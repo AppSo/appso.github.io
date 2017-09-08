@@ -37,20 +37,13 @@
 <h4 id="域名关键字"><a href="#域名关键字" class="headerlink" title="域名关键字"></a>域名关键字</h4><p><code>DOMAIN-KEYWORD,google,Proxy</code></p>
 <p>如果请求的域包含关键字，则规则匹配。</p>
 <h4 id="基于域名的规则选项"><a href="#基于域名的规则选项" class="headerlink" title="基于域名的规则选项"></a>基于域名的规则选项</h4><p>force-remote-dns</p>
-<p><code>DOMAIN,www.apple.com,Proxy,force-remote-dns
-DOMAIN-SUFFIX,apple.com,Proxy,force-remote-dns
-DOMAIN-KEYWORD,google,Proxy,force-remote-dns</code></p>
-<h3 id="基于IP的规则"><a href="#基于IP的规则" class="headerlink" title="基于IP的规则"></a>基于IP的规则</h3><h4 id="IP-CIDR"><a href="#IP-CIDR" class="headerlink" title="IP-CIDR"></a>IP-CIDR</h4><p><code>IP-CIDR,192.168.0.0/16,DIRECT
-IP-CIDR,10.0.0.0/8,DIRECT
-IP-CIDR,172.16.0.0/12,DIRECT
-IP-CIDR,127.0.0.1/8,DIRECT</code></p>
+<p><code>DOMAIN,www.apple.com,Proxy,force-remote-dns</code><br><code>DOMAIN-SUFFIX,apple.com,Proxy,force-remote-dns</code><br><code>DOMAIN-KEYWORD,google,Proxy,force-remote-dns</code></p>
+<h3 id="基于IP的规则"><a href="#基于IP的规则" class="headerlink" title="基于IP的规则"></a>基于IP的规则</h3><h4 id="IP-CIDR"><a href="#IP-CIDR" class="headerlink" title="IP-CIDR"></a>IP-CIDR</h4><p><code>IP-CIDR,192.168.0.0/16,DIRECT</code><br><code>IP-CIDR,10.0.0.0/8,DIRECT</code><br><code>IP-CIDR,172.16.0.0/12,DIRECT</code><br><code>IP-CIDR,127.0.0.1/8,DIRECT</code></p>
 <p>如果请求的IP地址匹配指定范围，则规则匹配。</p>
-<h4 id="GEOIP"><a href="#GEOIP" class="headerlink" title="GEOIP"></a>GEOIP</h4><p><code>GEOIP,US,DIRECT
-GEOIP,CN,DIRECT</code></p>
+<h4 id="GEOIP"><a href="#GEOIP" class="headerlink" title="GEOIP"></a>GEOIP</h4><p><code>GEOIP,US,DIRECT</code><br><code>GEOIP,CN,DIRECT</code></p>
 <p>如果GeoIP测试结果符合指定的国家/地区代码，则规则匹配。</p>
 <h4 id="基于IP的规则选项"><a href="#基于IP的规则选项" class="headerlink" title="基于IP的规则选项"></a>基于IP的规则选项</h4><p>no-resolve</p>
-<p><code>GEOIP,US,DIRECT,no-resolve
-IP-CIDR,172.16.0.0/12,DIRECT,no-resolve</code></p>
+<p><code>GEOIP,US,DIRECT,no-resolve</code><br><code>IP-CIDR,172.16.0.0/12,DIRECT,no-resolve</code></p>
 <p>当遇到GEOIP或IP-CIDR规则时，Shadowrocket会发送DNS问题，以检查请求的主机名是否为域名。您可以选择“no-resolve”选项来跳过具有域名的请求的此规则。<br>注意：如果某些域名无法由本地DNS服务器解决，请确保在与该域匹配的规则前面没有基于IP的规则。否则由于DNS错误，规则测试将失败。您也可以使用“no-resolve”来解决问题。</p>
 <h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><h4 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h4><p>用于解密HTTPS。</p>
 <h4 id="延迟测试方法"><a href="#延迟测试方法" class="headerlink" title="延迟测试方法"></a>延迟测试方法</h4><p>建议选择TCP</p>
