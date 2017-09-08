@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>shadowrocket-manual | AppSo</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/." class="title">AppSo</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>shadowrocket-manual</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2017-09-08</div></div></div><article><div class="container post"><h1 id="Shadowrocket使用简单说明"><a href="#Shadowrocket使用简单说明" class="headerlink" title="Shadowrocket使用简单说明"></a>Shadowrocket使用简单说明</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Shadowrocket是一款基于规则的代理实用工具。</p>
+<ul>
+<li>高性能和稳定性：功能多样，但只占用最少的系统资源。它将完美地处理所有的流量，让你无忧无虑。</li>
+<li>灵活的规则系统：您可以根据域名，IP CIDR，GEOIP等设置代理转发规则。Shadowrocket将自动将请求发送到另一个代理服务器。支持的代理协议多样化。</li>
+<li>HTTPS解密：HTTPS流量可以被MitM解密。证书生成器将帮助您生成用于调试的CA证书，并使证书受系统信任。</li>
+<li>本地DNS映射：Shadowrocket支持本地定制的DNS映射。其多功能模块，包括通配符，别名和自定义DNS服务器，将能够满足不同的需求。</li>
+<li>HTTP重写：根据自定义规则将HTTP / HTTPS请求重写到另一个URL，或者简单地阻止请求。</li>
+<li>所有功能都可以在蜂窝网络上工作。</li>
+<li>捕获设备上任何应用程序的所有HTTP / HTTPS / TCP流量，并将流量重定向到HTTP / HTTPS / SOCKS5代理服务器，遵循高度可配置的规则，即使应用程序不遵循系统代理设置。</li>
+<li>即使在蜂窝网络上也可以覆盖系统DNS设置。并通过同时向所有DNS服务器发送DNS查询来提升性能。</li>
+</ul>
+<h2 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h2><h4 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h4><p>可通过扫码和首页右上角的➕来操作。</p>
+<h4 id="节点排序"><a href="#节点排序" class="headerlink" title="节点排序"></a>节点排序</h4><p>可通过长按➕或者节点列表右上角的”三”来操作（号长按为节点排序）。</p>
+<h4 id="全局路由"><a href="#全局路由" class="headerlink" title="全局路由"></a>全局路由</h4><ul>
+<li>配置（即使用.conf文件）</li>
+<li>代理（即PROXY）</li>
+<li>直连（即DIRECT）</li>
+<li>场景（根据不同使用场合自动切换相关配置，暂时支持使用不同的urltest测速分组和conf配置文件）</li>
+</ul>
+<h4 id="场景设置"><a href="#场景设置" class="headerlink" title="场景设置"></a>场景设置</h4><p>场景可选无线局域网、蜂窝数据网络、默认；<br>路由可选配置、代理、直连；<br>类型可选单个节点及分组；<br>配置即为该场景使用的配置文件。</p>
+<p><em>如果路由器挂载了ss我如何指定该路由下走直连，而其他路由器下走代理？</em></p>
+<blockquote>
+<p>您可以新建一个场景SSID取名为wifi(该四个单词不区分大小写)，然后进行其他相关设置。SSID设置为wifi意思是通配所有wifi的ssid。然后单独设置挂载了ss的路由器的场景，ssid取名为挂载了ss的路由器的名称，选择直连即可。</p>
+</blockquote>
+<h4 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h4><p>自动选择最优节点，需要添加分组后使用。例如我有节点a b c d ,可创建分组将其加进去，一般分组内的节点不超过5个为佳，速度测试分组可以和场景搭配使用，具体去场景设置。速度测试分组也可以和配置搭配使用，和配置搭配使用的时候注意下当前勾选的是哪个分组。</p>
+<h4 id="延迟测试"><a href="#延迟测试" class="headerlink" title="延迟测试"></a>延迟测试</h4><p>通过tcp/icmp ping获取当前的延迟信息，延迟信息仅作为参考，无其他实际意义。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>主要是规则相关文件的配置</p>
+<ul>
+<li>从iCloud等位置导入配置文件</li>
+<li>从网址导入配置文件</li>
+<li>从WiFi上传</li>
+</ul>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h3 id="基于域名的规则"><a href="#基于域名的规则" class="headerlink" title="基于域名的规则"></a>基于域名的规则</h3><h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><p><code>DOMAIN,www.apple.com,Proxy</code></p>
+<p>如果与请求的域名完全相同，则匹配规则。</p>
+<h4 id="域名后缀"><a href="#域名后缀" class="headerlink" title="域名后缀"></a>域名后缀</h4><p><code>DOMAIN-SUFFIX,apple.com,Proxy</code></p>
+<p>如果与请求的域名后缀相同，则规则匹配。例如：’google.com’匹配’www.google.com’，’mail.google.com’和’google.com’，但并没有匹配’content-google.com’。</p>
+<h4 id="域名关键字"><a href="#域名关键字" class="headerlink" title="域名关键字"></a>域名关键字</h4><p><code>DOMAIN-KEYWORD,google,Proxy</code></p>
+<p>如果请求的域包含关键字，则规则匹配。</p>
+<h4 id="基于域名的规则选项"><a href="#基于域名的规则选项" class="headerlink" title="基于域名的规则选项"></a>基于域名的规则选项</h4><p>force-remote-dns</p>
+<p><code>DOMAIN,www.apple.com,Proxy,force-remote-dns
+DOMAIN-SUFFIX,apple.com,Proxy,force-remote-dns
+DOMAIN-KEYWORD,google,Proxy,force-remote-dns</code></p>
+<h3 id="基于IP的规则"><a href="#基于IP的规则" class="headerlink" title="基于IP的规则"></a>基于IP的规则</h3><h4 id="IP-CIDR"><a href="#IP-CIDR" class="headerlink" title="IP-CIDR"></a>IP-CIDR</h4><p><code>IP-CIDR,192.168.0.0/16,DIRECT
+IP-CIDR,10.0.0.0/8,DIRECT
+IP-CIDR,172.16.0.0/12,DIRECT
+IP-CIDR,127.0.0.1/8,DIRECT</code></p>
+<p>如果请求的IP地址匹配指定范围，则规则匹配。</p>
+<h4 id="GEOIP"><a href="#GEOIP" class="headerlink" title="GEOIP"></a>GEOIP</h4><p><code>GEOIP,US,DIRECT
+GEOIP,CN,DIRECT</code></p>
+<p>如果GeoIP测试结果符合指定的国家/地区代码，则规则匹配。</p>
+<h4 id="基于IP的规则选项"><a href="#基于IP的规则选项" class="headerlink" title="基于IP的规则选项"></a>基于IP的规则选项</h4><p>no-resolve</p>
+<p><code>GEOIP,US,DIRECT,no-resolve
+IP-CIDR,172.16.0.0/12,DIRECT,no-resolve</code></p>
+<p>当遇到GEOIP或IP-CIDR规则时，Shadowrocket会发送DNS问题，以检查请求的主机名是否为域名。您可以选择“no-resolve”选项来跳过具有域名的请求的此规则。<br>注意：如果某些域名无法由本地DNS服务器解决，请确保在与该域匹配的规则前面没有基于IP的规则。否则由于DNS错误，规则测试将失败。您也可以使用“no-resolve”来解决问题。</p>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><h4 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h4><p>用于解密HTTPS。</p>
+<h4 id="延迟测试方法"><a href="#延迟测试方法" class="headerlink" title="延迟测试方法"></a>延迟测试方法</h4><p>建议选择TCP</p>
+<h4 id="按需求连接"><a href="#按需求连接" class="headerlink" title="按需求连接"></a>按需求连接</h4><p>建议关闭，因为规则不支持IP-CIDR，所以Telegram在按需连接下无法使用。</p>
+<h4 id="代理共享"><a href="#代理共享" class="headerlink" title="代理共享"></a>代理共享</h4><p>首先开启代理共享，其他ios用户去无线局域网下点击当前所处的同一wifi右边的感叹号，最下面HTTP代理-手动，填写服务器和端口，例如，火箭代理共享处的地址为192.168.123.36:1082，则服务器填写192.168.123.36，端口填写1082即可，电脑及安卓用户类似。</p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><p>默认参数即可。</p>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><p>类型默认Socket即可，Socket为作者自己实现，Session为使用苹果的库实现，参数用默认即可。</p>
+</div><!-- comment system--><div class="container"><hr></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2017 <a href="/" rel="nofollow">AppSo</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});
+</script></body></html>
