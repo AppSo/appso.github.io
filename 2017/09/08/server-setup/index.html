@@ -175,16 +175,17 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本库安装"><span class="toc-text">基本库安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取源代码"><span class="toc-text">获取源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端配置"><span class="toc-text">服务端配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#快速运行"><span class="toc-text">快速运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用配置文件运行"><span class="toc-text">使用配置文件运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新源代码"><span class="toc-text">更新源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自启动"><span class="toc-text">自启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#其它加密支持"><span class="toc-text">其它加密支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它异常"><span class="toc-text">其它异常</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本库安装"><span class="toc-text">基本库安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取源代码"><span class="toc-text">获取源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端配置"><span class="toc-text">服务端配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速运行"><span class="toc-text">快速运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用配置文件运行"><span class="toc-text">使用配置文件运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新源代码"><span class="toc-text">更新源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自启动"><span class="toc-text">自启动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它加密支持"><span class="toc-text">其它加密支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它异常"><span class="toc-text">其它异常</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。</p>
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。</p>
 <p>此教程为单用户版，适合个人用户。</p>
-<h2 id="基本库安装"><a href="#基本库安装" class="headerlink" title="基本库安装"></a>基本库安装</h2><p>以下命令均以 root 用户执行，或 sudo 方式执行</p>
+<h2 id="基本库安装"><a href="#基本库安装" class="headerlink" title="基本库安装"></a>基本库安装</h2><a id="more"></a>
+<p>以下命令均以 root 用户执行，或 sudo 方式执行</p>
 <p>centos：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure>
 <p>ubuntu/debian：</p>
@@ -197,7 +198,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/shadowsocksr</div><div class="line">bash initcfg.sh</div></pre></td></tr></table></figure>
 <p>以下步骤要进入子目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/shadowsocksr/shadowsocks</div></pre></td></tr></table></figure>
-<h4 id="快速运行"><a href="#快速运行" class="headerlink" title="快速运行"></a>快速运行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python server.py -p 443 -k password -m none -O auth_chain_b -o tls1.2_ticket_auth</div><div class="line"><span class="comment">#说明：-p 端口 -k 密码  -m 加密方式 -O 协议插件 -o 混淆插件</span></div></pre></td></tr></table></figure>
+<h3 id="快速运行"><a href="#快速运行" class="headerlink" title="快速运行"></a>快速运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python server.py -p 443 -k password -m none -O auth_chain_b -o tls1.2_ticket_auth</div><div class="line"><span class="comment">#说明：-p 端口 -k 密码  -m 加密方式 -O 协议插件 -o 混淆插件</span></div></pre></td></tr></table></figure>
 <p>如果要后台运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py -p 443 -k password -m none -O auth_chain_b -o tls1.2_ticket_auth -d start</div></pre></td></tr></table></figure>
 <p>如果要停止/重启：</p>
@@ -205,7 +206,7 @@
 <p>查看日志：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f /var/<span class="built_in">log</span>/shadowsocksr.log</div></pre></td></tr></table></figure>
 <p>用 <code>-h</code> 查看所有参数</p>
-<h4 id="使用配置文件运行"><a href="#使用配置文件运行" class="headerlink" title="使用配置文件运行"></a>使用配置文件运行</h4><p>如果你的ss目录是 <code>~/shadowsocksr</code>，进入这里<br>修改 <code>user-config.json</code> 中的 <code>server_port</code>，<code>password</code> 等字段，具体可参见：<a href="https://github.com/appso/shadowsocks-rss/wiki/config.json" target="_blank" rel="external">https://github.com/appso/shadowsocks-rss/wiki/config.json</a>  </p>
+<h3 id="使用配置文件运行"><a href="#使用配置文件运行" class="headerlink" title="使用配置文件运行"></a>使用配置文件运行</h3><p>如果你的ss目录是 <code>~/shadowsocksr</code>，进入这里<br>修改 <code>user-config.json</code> 中的 <code>server_port</code>，<code>password</code> 等字段，具体可参见：<a href="https://github.com/appso/shadowsocks-rss/wiki/config.json" target="_blank" rel="external">https://github.com/appso/shadowsocks-rss/wiki/config.json</a>  </p>
 <p>运行子目录内的 server.py：  </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py</div></pre></td></tr></table></figure>
 <p>如果要在后台运行：</p>
@@ -230,8 +231,8 @@
 </ul>
 <p>OSX 上可使用 GoAgentX 的 SSR 插件。在你本地的 PC 或手机上使用图形客户端。具体使用参见它们的使用说明。</p>
 <p>也可以直接使用 <a href="https://github.com/appso/shadowsocks-rss/wiki/Python-client-setup-Mult-language" target="_blank" rel="external">Python</a> 版客户端（命令行）。</p>
-<h3 id="其它加密支持"><a href="#其它加密支持" class="headerlink" title="其它加密支持"></a>其它加密支持</h3><p>安装 <a href="https://github.com/appso/shadowsocks-rss/wiki/libsodium" target="_blank" rel="external">libsodium</a> 即可支持 salsa20, chacha20, chacha20-ietf 加密（暂不支持<a href="https://github.com/onelogin/aead" target="_blank" rel="external">AEAD</a>）</p>
-<h3 id="其它异常"><a href="#其它异常" class="headerlink" title="其它异常"></a>其它异常</h3><p>如果你的服务端 python 版本在 2.6 以下，那么必须更新 python 到 2.6.x 或 2.7.x 版本  </p>
+<h2 id="其它加密支持"><a href="#其它加密支持" class="headerlink" title="其它加密支持"></a>其它加密支持</h2><p>安装 <a href="https://github.com/appso/shadowsocks-rss/wiki/libsodium" target="_blank" rel="external">libsodium</a> 即可支持 salsa20, chacha20, chacha20-ietf 加密（暂不支持<a href="https://github.com/onelogin/aead" target="_blank" rel="external">AEAD</a>）</p>
+<h2 id="其它异常"><a href="#其它异常" class="headerlink" title="其它异常"></a>其它异常</h2><p>如果你的服务端 python 版本在 2.6 以下，那么必须更新 python 到 2.6.x 或 2.7.x 版本  </p>
 <p>其它参见 <a href="https://github.com/appso/shadowsocks-rss/wiki/ulimit" target="_blank" rel="external">https://github.com/appso/shadowsocks-rss/wiki/ulimit</a></p>
 
       
@@ -303,7 +304,7 @@
     
       
         
-          <a href="https://github.com/AppSp" class="iconfont icon-github" title="github"></a>
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
         
       
     
