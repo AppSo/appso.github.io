@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ShadowsocksR 服务端安装教程 | AppSo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说明不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。 此教程为单用户版，适合个人用户。 基本库安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ShadowsocksR 服务端安装教程">
+<meta property="og:url" content="http://yoursite.com/2017/09/08/server-setup/index.html">
+<meta property="og:site_name" content="AppSo">
+<meta property="og:description" content="说明不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。 此教程为单用户版，适合个人用户。 基本库安装">
+<meta property="og:updated_time" content="2017-09-12T08:49:12.922Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ShadowsocksR 服务端安装教程">
+<meta name="twitter:description" content="说明不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。 此教程为单用户版，适合个人用户。 基本库安装">
+  
+    <link rel="alternative" href="/atom.xml" title="AppSo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-server-setup" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ShadowsocksR 服务端安装教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/08/server-setup/" class="article-date">
+  <time datetime="2017-09-08T13:18:08.000Z" itemprop="datePublished">2017-09-08</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>不建议使用一键脚本安装，除非你自己能维护其功能，否则安装时若出了问题很难查，而且现在有不少不明来历的一键脚本内嵌后门程序。</p>
+<p>此教程为单用户版，适合个人用户。</p>
+<h2 id="基本库安装"><a href="#基本库安装" class="headerlink" title="基本库安装"></a>基本库安装</h2><a id="more"></a>
+<p>以下命令均以 root 用户执行，或 sudo 方式执行</p>
+<p>centos：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install git</div></pre></td></tr></table></figure>
+<p>ubuntu/debian：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install git</div></pre></td></tr></table></figure>
+<h2 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> -b manyuser https://github.com/appso/shadowsocksr.git</div></pre></td></tr></table></figure>
+<p>执行完毕后此目录会新建一个 <code>shadowsocksr</code> 目录，其中根目录的是多用户版（即数据库版，个人用户请忽略这个），子目录中的是单用户版（即 shadowsocksr/shadowsocks）。</p>
+<p>根目录即 <code>./shadowsocksr</code></p>
+<p>子目录即 <code>./shadowsocksr/shadowsocks</code></p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><p>进入根目录初始化配置（假设根目录在 <code>~/shadowsocksr</code>，如果不是，命令需要适当调整）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/shadowsocksr</div><div class="line">bash initcfg.sh</div></pre></td></tr></table></figure>
+<p>以下步骤要进入子目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/shadowsocksr/shadowsocks</div></pre></td></tr></table></figure>
+<h3 id="快速运行"><a href="#快速运行" class="headerlink" title="快速运行"></a>快速运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python server.py -p 443 -k password -m none -O auth_chain_b -o tls1.2_ticket_auth</div><div class="line"><span class="comment">#说明：-p 端口 -k 密码  -m 加密方式 -O 协议插件 -o 混淆插件</span></div></pre></td></tr></table></figure>
+<p>如果要后台运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py -p 443 -k password -m none -O auth_chain_b -o tls1.2_ticket_auth -d start</div></pre></td></tr></table></figure>
+<p>如果要停止/重启：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py -d stop/restart</div></pre></td></tr></table></figure>
+<p>查看日志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f /var/<span class="built_in">log</span>/shadowsocksr.log</div></pre></td></tr></table></figure>
+<p>用 <code>-h</code> 查看所有参数</p>
+<h3 id="使用配置文件运行"><a href="#使用配置文件运行" class="headerlink" title="使用配置文件运行"></a>使用配置文件运行</h3><p>如果你的ss目录是 <code>~/shadowsocksr</code>，进入这里<br>修改 <code>user-config.json</code> 中的 <code>server_port</code>，<code>password</code> 等字段，具体可参见：<a href="https://github.com/appso/shadowsocks-rss/wiki/config.json" target="_blank" rel="external">https://github.com/appso/shadowsocks-rss/wiki/config.json</a>  </p>
+<p>运行子目录内的 server.py：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py</div></pre></td></tr></table></figure>
+<p>如果要在后台运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py -d start</div></pre></td></tr></table></figure>
+<p>如果要停止/重启：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python server.py -d stop/restart</div></pre></td></tr></table></figure>
+<p>查看日志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f /var/<span class="built_in">log</span>/shadowsocksr.log</div></pre></td></tr></table></figure>
+<h3 id="更新源代码"><a href="#更新源代码" class="headerlink" title="更新源代码"></a>更新源代码</h3><p>如果代码有更新可用本命令更新代码</p>
+<p>进入 <code>shadowsocksr</code> 目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> shadowsocksr</div></pre></td></tr></table></figure>
+<p>执行  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure>
+<p>成功后重启 ssr 服务  </p>
+<h3 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h3><p><a href="https://github.com/appso/shadowsocks-rss/wiki/System-startup-script" target="_blank" rel="external">System startup script</a></p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>注：以下客户端中有：windows 客户端和 python 版客户端，ShadowsocksX-NG（macOS 客户端之一）， Android 客户端，Shadowrocket（iOS 客户端之一，iTunes 售价$3美元/￥18人民币）， 可以使用 SSR 特性，其他原版客户端只能以兼容的方式连接 SSR 服务器（SSR 可兼容 SS 客户端）。</p>
+<ul>
+<li><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp" target="_blank" rel="external">Windows</a> / <a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help" target="_blank" rel="external">OS X</a> / <a href="https://github.com/yichengchen/ShadowsocksX-R" target="_blank" rel="external">ShadowsocksX-NG</a>  </li>
+<li><a href="https://github.com/shadowsocksrr/shadowsocksr" target="_blank" rel="external">Linux python</a> / <a href="https://github.com/librehat/shadowsocks-qt5" target="_blank" rel="external">Linux Qt</a></li>
+<li><a href="https://github.com/shadowsocksrr/shadowsocksr-android" target="_blank" rel="external">Android</a> / <a href="https://github.com/shadowsocks/shadowsocks-iOS/wiki/Help" target="_blank" rel="external">iOS</a> / <a href="https://itunes.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="external">Shadowrocket</a></li>
+<li><a href="https://github.com/shadowsocks/openwrt-shadowsocks" target="_blank" rel="external">OpenWRT</a></li>
+</ul>
+<p>OSX 上可使用 GoAgentX 的 SSR 插件。在你本地的 PC 或手机上使用图形客户端。具体使用参见它们的使用说明。</p>
+<p>也可以直接使用 <a href="https://github.com/appso/shadowsocks-rss/wiki/Python-client-setup-Mult-language" target="_blank" rel="external">Python</a> 版客户端（命令行）。</p>
+<h2 id="其它加密支持"><a href="#其它加密支持" class="headerlink" title="其它加密支持"></a>其它加密支持</h2><p>安装 <a href="https://github.com/appso/shadowsocks-rss/wiki/libsodium" target="_blank" rel="external">libsodium</a> 即可支持 salsa20, chacha20, chacha20-ietf 加密（暂不支持<a href="https://github.com/onelogin/aead" target="_blank" rel="external">AEAD</a>）</p>
+<h2 id="其它异常"><a href="#其它异常" class="headerlink" title="其它异常"></a>其它异常</h2><p>如果你的服务端 python 版本在 2.6 以下，那么必须更新 python 到 2.6.x 或 2.7.x 版本  </p>
+<p>其它参见 <a href="https://github.com/appso/shadowsocks-rss/wiki/ulimit" target="_blank" rel="external">https://github.com/appso/shadowsocks-rss/wiki/ulimit</a></p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/08/shadowrocket-manual/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Shadowrocket 使用简单说明
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/AppSo" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2017 AppSo 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/AppSo" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

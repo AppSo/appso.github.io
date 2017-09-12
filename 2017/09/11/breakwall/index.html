@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>翻墙小结 | AppSo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="随着我国相关法律条款的日益完善，本自乱象丛生的 VPN 市场如今已渐渐被控制，使用传统协议 （IKE、IPSec、PPTP …） 的科学上网方式也变得更加困难；加上第三方服务商的不透明性，不稳定性，使得第三方科学上网的安全性 （如 MITM …），速度体验让人堪忧…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻墙小结">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/breakwall/index.html">
+<meta property="og:site_name" content="AppSo">
+<meta property="og:description" content="随着我国相关法律条款的日益完善，本自乱象丛生的 VPN 市场如今已渐渐被控制，使用传统协议 （IKE、IPSec、PPTP …） 的科学上网方式也变得更加困难；加上第三方服务商的不透明性，不稳定性，使得第三方科学上网的安全性 （如 MITM …），速度体验让人堪忧…">
+<meta property="og:updated_time" content="2017-09-12T08:42:55.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻墙小结">
+<meta name="twitter:description" content="随着我国相关法律条款的日益完善，本自乱象丛生的 VPN 市场如今已渐渐被控制，使用传统协议 （IKE、IPSec、PPTP …） 的科学上网方式也变得更加困难；加上第三方服务商的不透明性，不稳定性，使得第三方科学上网的安全性 （如 MITM …），速度体验让人堪忧…">
+  
+    <link rel="alternative" href="/atom.xml" title="AppSo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-breakwall" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      翻墙小结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/11/breakwall/" class="article-date">
+  <time datetime="2017-09-11T15:11:02.000Z" itemprop="datePublished">2017-09-11</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>随着我国相关法律条款的日益完善，本自乱象丛生的 <a href="https://en.m.wikipedia.org/wiki/Virtual_private_network" target="_blank" rel="external">VPN</a> 市场如今已渐渐被控制，使用传统协议 （<a href="https://en.m.wikipedia.org/wiki/Internet_Key_Exchange" target="_blank" rel="external">IKE</a>、<a href="https://en.m.wikipedia.org/wiki/IPsec" target="_blank" rel="external">IPSec</a>、<a href="https://en.m.wikipedia.org/wiki/Point-to-Point_Tunneling_Protocol" target="_blank" rel="external">PPTP</a> …） 的科学上网方式也变得更加困难；加上第三方服务商的不透明性，不稳定性，使得第三方科学上网的安全性 （如 <a href="https://en.m.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="external">MITM</a> …），速度体验让人堪忧…</p>
+</blockquote>
+<a id="more"></a>
+<p><strong>故本文将详细介绍如何创造一个安全快速的个人科学上网服务环境；涉及服务端的选择，搭建、优化、安全性加强和客户端的选择，以达到更好的科学上网体验；适合有一定知识的 Linux 用户和善于使用搜索引擎的小白阅读…</strong></p>
+<p><em>（仅供参考，请在法律范围内使用该教程，如有违反法律规定，作者概不负责）</em></p>
+<h2 id="VPS-服务商的选择"><a href="#VPS-服务商的选择" class="headerlink" title="VPS 服务商的选择"></a>VPS 服务商的选择</h2><p><a href="https://en.m.wikipedia.org/wiki/Virtual_private_server" target="_blank" rel="external">VPS</a> 服务商的选择将直接影响你的科学上网体验，下面提供一些参考建议，提供商均安全可靠且有一定知名度；<strong>在获得一个 VPS 实例之前，你可能需要先注册好相关账号并准备一张具有国际支付功能的信用卡 （Visa、MasterCard …）</strong></p>
+<ul>
+<li><p><strong><a href="https://cloud.google.com/" target="_blank" rel="external">Google Cloud Computing Engine</a> （推荐）</strong><br>需要一个 Google 账号，初次注册可以获得300$有效期为一年的使用卷，最低配置使用一年几乎免费；建议选择 Asia 机房 （IP Location：Mountain View），速度和稳定性极佳，但不支持 IPv6 （不使用负载均衡的情况下）</p>
+</li>
+<li><p><strong><a href="https://aws.amazon.com/" target="_blank" rel="external">AWS EC2</a></strong><br>需要一个 Amazon 账号，初次注册可以获得一年的 Free Trial 权限，出入站流量各 15GB/月；建议选择 Tokyo 机房 （IP Location：Tokyo），稳定性极佳，速度尚可，支持 IPv6 （需<strong><a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-migrate-ipv6.html" target="_blank" rel="external">设置 VPC</a></strong>）</p>
+</li>
+<li><p><strong><a href="https://vultr.com/" target="_blank" rel="external">Vultr</a></strong><br>账号注册简易（可以使用 <a href="https://www.paypal.com/" target="_blank" rel="external">PayPal</a> 付款，无需信用卡），初次注册仅送 50GB Block Storage，但费用廉价；建议选择5$套餐，包括 1TB Bandwidth/月，建议选择 Tokyo 机房 （IP Location:：Tokyo），速度一般，稳定性尚可，支持 IPv6</p>
+</li>
+<li><p><strong><a href="https://linode.com/" target="_blank" rel="external">Linode</a></strong><br>账号注册简易，初次注册无优惠，费用廉价，建议选择5$套餐，包括 1TB Bandwidth/月，建议选择 Tokyo 机房 （IP Location：Tokyo），速度极佳，稳定性一般 （由于曾经某些人的滥用，导致 IP 极易被 Ban），支持 IPv6</p>
+</li>
+<li><p><strong><a href="https://lightsail.aws.amazon.com/" target="_blank" rel="external">Lightsail</a></strong><br>需要一个 Amazon 账号，由 AWS 推出，初次注册无优惠，费用廉价配置一般，建议选择5$套餐，包括 500GB Bandwidth/月，建议选择 Tokyo 机房 （IP Location：Tokyo），速度一般，稳定性极佳，不支持 IPv6</p>
+</li>
+<li><p><strong><a href="https://www.digitalocean.com/" target="_blank" rel="external">Digital Ocean</a></strong><br>账号注册简易，初次注册无优惠，费用廉价，建议选择5$套餐，包括 1TB Bandwidth/月，建议选择 Singapore 机房 （IP Location：Singapore），速度一般，稳定性极佳，支持 IPv6</p>
+</li>
+<li><p><strong><a href="https://azure.microsoft.com/en-us/" target="_blank" rel="external">Azure</a></strong><br>需要一个 Microsoft 帐户，初次注册可获得300$有效期为三个月的试用卷；长期使用价格昂贵，建议选择 Japan East/West 机房 （IP Location：Japan），速度和稳定性极佳，支持 IPv6</p>
+</li>
+</ul>
+<p><em>*云服务平台的质量随时都在变化，以上仅供参考</em></p>
+<h2 id="科学上网服务端搭建"><a href="#科学上网服务端搭建" class="headerlink" title="科学上网服务端搭建"></a>科学上网服务端搭建</h2><h3 id="搭建-Shadowsocks-libev-服务器"><a href="#搭建-Shadowsocks-libev-服务器" class="headerlink" title="搭建 Shadowsocks-libev 服务器"></a>搭建 Shadowsocks-libev 服务器</h3><p><strong>Q1.为什么使用 Shadowsocks 协议？</strong></p>
+<p>相比传统的 VPN （IKE、IPSec、PPTP …），Shadowsocks 协议具有更好的灵活性和隐蔽性，且搭建相对简单，因此可以拥有相对传统 VPN 更快的速度和更高的稳定性；另对比 <a href="https://www.v2ray.com/" target="_blank" rel="external">V2Ray</a> 这种科学上网的集合体，Shadowsocks 在服务端更加轻量，单一协议完善程度更高；在移动端有更丰富的客户端选择，兼容性和灵活性更优。关于 Shadowsocks 的协议特点，原理及弱点的更多讨论，可以在<strong><a href="https://github.com/breakwa11/shadowsocks-rss/issues/38" title="这里" target="_blank" rel="external">这里</a></strong>稍做了解，本文不对此长篇大论</p>
+<p><strong>Q2.为什么使用 <a href="https://github.com/shadowsocks/shadowsocks-libev" target="_blank" rel="external">Shadowsock-libev</a> 服务端？</strong></p>
+<p>相比原版 <a href="https://github.com/shadowsocks/shadowsocks" title="Shadowsocks" target="_blank" rel="external">Shadowsocks</a> (Python)，libev (C#) 版本提供了更多的特性支持；而关于<a href="https://github.com/shadowsocksr/shadowsocksr" title="ShadowsocksR" target="_blank" rel="external">ShadowsocksR</a> (Python)，Shadowsocks-libev 率先支持 <strong><a href="https://en.m.wikipedia.org/wiki/Authenticated_encryption" title="AEAD" target="_blank" rel="external">AEAD</a></strong> 加密，并向 ShadowsocksR 学习引进了 <strong><a href="https://github.com/shadowsocksr/obfsplugin" title="Obfs" target="_blank" rel="external">Obfs</a></strong> （<a href="https://github.com/shadowsocks/simple-obfs" title="Simple-Obfs" target="_blank" rel="external">Simple-Obfs</a>，但与前者原理有所不同），且提供稳定的周期性更新；关于未来，ShadowsocksR 更倾向于 none 加密策略，而 Shadowsocks-libev 则倾向于传统的加密策略，两者有不同的侧重点 （ShadowsocksR 更侧重消除特征以避免被检测识别，而 Shadowsocks-libev 则追求更高的安全性），综合起来并无优劣之分</p>
+<p>*2017年7月28日，ShadowsocksR团队正式解散</p>
+<p>①<strong>以 root 权限运行命令</strong></p>
+<p>初次连接到实例，一般需要获取 root 权限 （非 root 用户的情况下），获取方法如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo passwd root</div><div class="line"><span class="comment"># 运行以上命令，重设 root 用户密码</span></div><div class="line">su</div><div class="line"><span class="comment"># 运行以上命令，使用重设后的 root 密码登录</span></div></pre></td></tr></table></figure>
+<p>②<strong>开始搭建 Shadowsocks-libev 服务端</strong></p>
+<p><strong><a href="https://github.com/shadowsocks/shadowsocks-libev#linux" target="_blank" rel="external">自行搭建</a></strong></p>
+<p>③<strong>自定义 Shadowsocks-libev 服务端*</strong></p>
+<p>在使用默认的配置<strong>安装完毕后</strong>，对安装后的配置文件进行编辑，编辑命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nano /etc/shadowsocks-libev/config.json</div><div class="line"><span class="comment"># 运行以上命令，对其安装后的运行参数进行编辑自定义（语法为 json 标准格式）</span></div></pre></td></tr></table></figure>
+<p>参数如下，详见 <strong><a href="Shadowsocks-libev Wiki" title="Shadowsocks-libev Wiki">Shadowsocks-libev Wiki</a></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">SSLOCAL=<span class="string">"[\"[::0]\",\"0.0.0.0\"]"</span></div><div class="line"><span class="comment"># Shadowsocks 的默认监听地址，默认为任何 IPv6 或 IPv4 地址</span></div><div class="line">PORT=<span class="string">"443"</span></div><div class="line"><span class="comment"># Shadowsocks 使用的端口，建议使用 443 (HTTPS)</span></div><div class="line">LOACL=<span class="string">"127.0.0.1"</span></div><div class="line"><span class="comment"># 本地监听地址!</span></div><div class="line">LOCALPORT=<span class="string">"1080"</span></div><div class="line"><span class="comment"># 本地监听端口!</span></div><div class="line">PASSWORD=<span class="string">""</span></div><div class="line"><span class="comment"># 加密使用的密码，留空将会自动生成，切忌简单密码</span></div><div class="line">DNS=<span class="string">"8.8.8.8"</span></div><div class="line"><span class="comment"># 默认使用 Google Public DNS 服务器</span></div><div class="line">TIMEOUT=<span class="string">"600"</span></div><div class="line"><span class="comment"># 未使用的连接超时自动断开，单位 (s)</span></div><div class="line">METHOD=<span class="string">"chacha20-ietf-poly1305"</span></div><div class="line"><span class="comment"># 加密方式，详见加密*</span></div><div class="line">OBFS=<span class="string">"tls"</span></div><div class="line"><span class="comment"># 混淆方式，详见混淆*</span></div><div class="line">OBFSHOST=<span class="string">"mzstatic.com"</span></div><div class="line"><span class="comment"># 混淆域名，详见混淆*</span></div><div class="line">WORKERS=<span class="string">"1024"</span></div><div class="line"><span class="comment"># 服务使用的线程数，更高的线程数可以提高加解密速度</span></div><div class="line">FWS=<span class="string">"enable"</span></div><div class="line"><span class="comment"># 伪装成网站服务器，避免被检测</span></div><div class="line">ABB=<span class="string">"enable"</span></div><div class="line"><span class="comment"># 利用 fail2ban 自动 Ban 掉向服务器发送恶意数据的 IP</span></div><div class="line">BBR=<span class="string">"enable"</span></div><div class="line"><span class="comment"># 安装 Google-BBR 加速</span></div></pre></td></tr></table></figure>
+<p>完成编辑后需<strong>重启 Shadowsocks-libev 应用配置</strong>，命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/shadowsocks restart</div><div class="line"><span class="comment"># 运行以上命令重启通过 Shadowsocks-libev 服务端</span></div></pre></td></tr></table></figure>
+<p>*加密，推荐使用 AEAD 加密，以下是四种 AEAD 加密方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">aes-128-gcm</div><div class="line">aes-192-gcm</div><div class="line">aes-256-gcm</div><div class="line">chacha20-ietf-poly1305</div></pre></td></tr></table></figure>
+<p>以及几种常用的 OTA 加密方式 （OTA 加密一定程度上可以加快加密速度并降低 CPU 使用率，但较前者安全性更低且有明显缺陷）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rc4-md5</div><div class="line">aes-128-cfb</div><div class="line">aes-128-ctr</div></pre></td></tr></table></figure>
+<p>*混淆方式，主要分为 <code>tls</code>、<code>http</code> 两种，相比 <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" title="http" target="_blank" rel="external">http</a>，<a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" title="tls" target="_blank" rel="external">tls</a> 更具优势，但支持 Shadowsocks-libev 的 tls 混淆客户端较少</p>
+<p>*混淆域名，使用混淆时伪装的域名，一般选择大型企业、流量出入较大、CDN 等未被墙的域名作为混淆域名 （如伪装的特定端口下的 IP 或域名来免流），常用的混淆域名有这些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cloudfront.com</div><div class="line">cloudflare.com</div><div class="line">itunes.apple.com</div><div class="line">www.icloud.com</div><div class="line">s.mzstatic.com</div><div class="line">ajax.microsoft.com</div><div class="line">apps.bdimg.com</div></pre></td></tr></table></figure>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>①<strong><a href="https://en.wikipedia.org/wiki/TCP_Fast_Open" title="TCP Fast Open" target="_blank" rel="external">TCP Fast Open</a></strong></p>
+<p>主要通过第一次 TCP 握手后服务器产生 Cookie 作为后续 TCP 连接的认证信息，客户端通过 TCP 再次连接到服务器时，可以在 SYN 报文携带数据 （<a href="https://tools.ietf.org/html/rfc793" title="RFC793" target="_blank" rel="external">RFC793</a>），降低了握手频率，可避免恶意攻击并大幅降低网络延迟 （<a href="http://conferences.sigcomm.org/co-next/2011/papers/1569470463.pdf" title="参考" target="_blank" rel="external">参考</a>）。下面介绍如何开启这一功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"net.ipv4.tcp_fastopen = 3"</span> &gt;&gt; /etc/sysctl.conf</div><div class="line"><span class="comment"># 运行以上命令，设置 IPv4 下的 TFO 默认为开启状态</span></div><div class="line">sysctl -e -p</div><div class="line"><span class="comment"># 运行以上命令，应用配置</span></div></pre></td></tr></table></figure>
+<p>②<strong>改善 <a href="https://en.wikipedia.org/wiki/TCP_congestion_control" title="TCP 拥塞算法" target="_blank" rel="external">TCP 拥塞算法</a></strong></p>
+<p>HTTP 协议在传输层使用 TCP 协议，TCP 丢包重传机制算法的不同会大幅影响科学上网速度；更换 TCP 拥塞算法需要使用命令 <code>nano /etc/sysctl.conf</code> 编辑系统配置文件，并定位到 <code>net.ipv4.tcp_congestion_control =</code>  这一行 (若没有请手动添加)，其后接的算法主要有 <code>cubic</code>、<code>hybla</code>、<code>bbr</code> 等，修改完成后使用命令 <code>sysctl -e -p</code> 应用配置；下面是相关算法的简单介绍</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cubic  <span class="comment"># 由 bic 算法衍化而来，适用于低丢包率网络</span></div><div class="line">hybla  <span class="comment"># 卫星链路使用的算法，适用于高延迟，高丢包率的网络</span></div><div class="line">bbr    <span class="comment"># 由 Google 开源的算法，适用于低延迟，较低丢包率的网络 （需要手动配置*）</span></div></pre></td></tr></table></figure>
+<p><strong>*配置 <a href="https://github.com/google/bbr" title="Google BBR" target="_blank" rel="external">Google BBR</a></strong></p>
+<p>开始配置 BBR 之前，确保你的<strong>内核版本 &gt; 4.8.x</strong> （使用命令 <code>uname -a</code> 查看），若低于最低版本，请先<strong>更新你的内核 （Ubuntu）</strong>；若要更新内核，请先使用命令 <code>nano updatekernel.sh</code> 新建脚本，将下面的代码复制粘贴到脚本内并保存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">KERNELVER=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/ | awk -F'\"v' '/v[4-9]./&#123;print $2&#125;' | cut -d/ -f1 | grep -v -  | sort -V | tail -1)</span>"</span></div><div class="line"><span class="comment"># 获取最新的 Linux Kernel 版本</span></div><div class="line">SYSTYPE=<span class="string">"<span class="variable">$(dpkg --print-architecture)</span>"</span></div><div class="line"><span class="comment"># 获取系统平台信息</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"amd64"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/amd64.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"i386"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/i386.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"armhf"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/armhf.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"arm64"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/arm64.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"ppc64el"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/ppc64el.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line">[ <span class="string">"<span class="variable">$SYSTYPE</span>"</span> = <span class="string">"s390x"</span> ] &amp;&amp; KERNEL=<span class="string">"<span class="variable">$(wget -qO- http://kernel.ubuntu.com/~kernel-ppa/mainline/v$&#123;KERNELVER&#125;/ | grep "linux-image" | grep "generic" | awk -F'\"&gt;' '/s390x.deb/&#123;print $2&#125;' | cut -d'&lt;' -f1 | head -1)</span>"</span></div><div class="line"><span class="comment"># 获取对应平台 Kernel 包的文件名</span></div><div class="line">wget -t 3 -T 30 -nv -O <span class="string">"<span class="variable">$KERNEL</span>"</span> <span class="string">"http://kernel.ubuntu.com/~kernel-ppa/mainline/v<span class="variable">$&#123;KERNELVER&#125;</span>/<span class="variable">$&#123;KERNEL&#125;</span>"</span></div><div class="line"><span class="comment"># 下载对应的 Kernel</span></div><div class="line">dpkg -i <span class="variable">$KERNEL</span></div><div class="line"><span class="comment"># 安装下载好的 Kernel</span></div><div class="line">rm -f <span class="variable">$KERNEL</span></div><div class="line"><span class="comment"># 清理下载文件</span></div><div class="line">update-grub</div><div class="line"><span class="comment"># 更新启动菜单</span></div></pre></td></tr></table></figure>
+<p>然后使用命令 <code>chmod -x updatekernel.sh &amp;&amp; bash updatekernel.sh</code> 给予脚本运行权限并运行脚本来更新内核</p>
+<p>若无需更新内核，则先将拥塞控制算法填写为 <code>bbr</code>，再添加以下代码保存并使用命令 <code>sysctl -e -p</code> 应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">net.core.default_qdisc = fq</div><div class="line"><span class="comment"># 将网络拥塞队列算法设置为性能和延迟最佳的 fq_codel</span></div></pre></td></tr></table></figure>
+<p>③<strong>内核优化</strong></p>
+<p>使用命令 <code>nano sysctl.conf</code> 编辑并在末尾加入如下代码，对系统进程及内存分配进行优化，保存并使用命令 <code>sysctl -e -p</code> 应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fs.file-max = 1024000</div><div class="line"><span class="comment"># 系统所有进程一共可以打开的句柄数 (bytes)</span></div><div class="line">kernel.msgmnb = 65536</div><div class="line"><span class="comment"># 进程通讯消息队列的最大字节数 (bytes)</span></div><div class="line">kernel.msgmax = 65536</div><div class="line"><span class="comment"># 进程通讯消息队列单条数据最大的长度 (bytes)</span></div><div class="line">kernel.shmmax = 68719476736</div><div class="line"><span class="comment"># 内核允许的最大共享内存大小 (bytes)</span></div><div class="line">kernel.shmall = 4294967296</div><div class="line"><span class="comment"># 任意时间内系统可以使用的共享内存总量 (bytes)</span></div></pre></td></tr></table></figure>
+<p>使用命令 <code>nano /etc/security/limits.conf</code> 编辑和写入如下代码，限制用户档案的体积大小，提高系统稳定性，完成后保存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*                soft    nofile           512000</div><div class="line"><span class="comment"># 用户档案警告体积大小 (bytes)</span></div><div class="line">*                hard    nofile          1024000</div><div class="line"><span class="comment"># 用户档案最大体积大小 (bytes)</span></div></pre></td></tr></table></figure>
+<p><strong>④TCP 的优化</strong></p>
+<p>涉及内核控制，TCP 包大小，TCP 转发，连接超时等优化，代码的简单释义已在其下方注明；使用命令 <code>nano sysctl.conf</code> 编辑并写入如下代码，保存并使用命令 <code>sysctl -e -p</code> 应用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">net.core.rmem_max = 12582912</div><div class="line"><span class="comment"># 设置内核接收 Socket 的最大长度 (bytes)</span></div><div class="line">net.core.wmem_max = 12582912</div><div class="line"><span class="comment"># 设置内核发送 Socket 的最大长度 (bytes)</span></div><div class="line">net.ipv4.tcp_rmem = 10240 87380 12582912</div><div class="line"><span class="comment"># 设置 TCP Socket 接收长度的最小值，预留值，最大值 (bytes)</span></div><div class="line">net.ipv4.tcp_wmem = 10240 87380 12582912</div><div class="line"><span class="comment"># 设置 TCP Socket 发送长度的最小值，预留值，最大值 (bytes)</span></div><div class="line">net.ipv4.ip_forward = 1</div><div class="line"><span class="comment"># 开启所有网络设备的 IPv4 流量转发，用于支持 IPv4 的正常访问</span></div><div class="line">net.ipv4.tcp_syncookies = 1</div><div class="line"><span class="comment"># 开启 SYN Cookie，用于防范 SYN 队列溢出后可能收到的攻击</span></div><div class="line">net.ipv4.tcp_tw_reuse = 1</div><div class="line"><span class="comment"># 允许将等待中的 Socket 重新用于新的 TCP 连接，提高 TCP 性能</span></div><div class="line">net.ipv4.tcp_tw_recycle = 0</div><div class="line"><span class="comment"># 禁止将等待中的 Socket 快速回收，提高 TCP 的稳定性</span></div><div class="line">net.ipv4.tcp_fin_timeout = 30</div><div class="line"><span class="comment"># 设置客户端断开 Sockets 连接后 TCP 在 FIN 等待状态的实际 (s)，保证性能</span></div><div class="line">net.ipv4.tcp_keepalive_time = 1200</div><div class="line"><span class="comment"># 设置 TCP 发送 keepalive 数据包的频率，影响 TCP 链接保留时间 (s)，保证性能</span></div><div class="line">net.ipv4.tcp_mtu_probing = 1</div><div class="line"><span class="comment"># 开启 TCP 层的 MTU 主动探测，提高网络速度</span></div><div class="line">net.ipv4.conf.all.accept_source_route = 1</div><div class="line">net.ipv4.conf.default.accept_source_route = 1</div><div class="line"><span class="comment"># 允许接收 IPv4 环境下带有路由信息的数据包，保证安全性</span></div><div class="line">net.ipv4.conf.all.accept_redirects = 0</div><div class="line">net.ipv4.conf.default.accept_redirects = 0</div><div class="line"><span class="comment"># 拒绝接收来自 IPv4 的 ICMP 重定向消息，保证安全性</span></div><div class="line">net.ipv4.conf.all.send_redirects = 0</div><div class="line">net.ipv4.conf.default.send_redirects = 0</div><div class="line">net.ipv4.conf.lo.send_redirects = 0</div><div class="line"><span class="comment"># 禁止发送在 IPv4 下的 ICMP 重定向消息，保证安全性</span></div><div class="line">net.ipv4.conf.all.rp_filter = 0</div><div class="line">net.ipv4.conf.default.rp_filter = 0</div><div class="line">net.ipv4.conf.lo.rp_filter = 0</div><div class="line"><span class="comment"># 关闭反向路径回溯进行源地址验证 (RFC1812)，提高性能</span></div><div class="line">net.ipv4.icmp_echo_ignore_broadcasts = 1</div><div class="line"><span class="comment"># 忽略所有 ICMP ECHO 请求的广播，保证安全性</span></div><div class="line">net.ipv4.icmp_ignore_bogus_error_responses = 1</div><div class="line"><span class="comment"># 忽略违背 RFC1122 标准的伪造广播帧，保证安全性</span></div><div class="line">net.ipv6.conf.all.accept_source_route = 1</div><div class="line">net.ipv6.conf.default.accept_source_route = 1</div><div class="line"><span class="comment"># 允许接收 IPv6 环境下带有路由信息的数据包，保证安全性</span></div><div class="line">net.ipv6.conf.all.accept_redirects = 0</div><div class="line">net.ipv6.conf.default.accept_redirects = 0</div><div class="line"><span class="comment"># 禁止接收来自 IPv6 下的 ICMPv6 重定向消息，保证安全性</span></div><div class="line">net.ipv6.conf.all.autoconf = 1</div><div class="line"><span class="comment"># 开启自动设定本地连接地址，用于支持 IPv6 地址的正常分配</span></div><div class="line">net.ipv6.conf.all.forwarding = 1</div><div class="line"><span class="comment"># 开启所有网络设备的 IPv6 流量转发，用于支持 IPv6 的正常访问</span></div></pre></td></tr></table></figure>
+<p><strong>⑤使用 <a href="https://gitlab.com/m2crypto/m2crypto" title="m2crypto" target="_blank" rel="external">m2crypto</a> 加速加解密 （Python 服务端）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-get install build-essential python3-dev python-dev python-pip libssl-dev swig</div><div class="line"><span class="comment"># 运行以上命令，安装支持库</span></div><div class="line">pip install m2crypto</div><div class="line"><span class="comment"># 运行以上命令，安装 m2crypto</span></div></pre></td></tr></table></figure>
+<p><strong>⑥使用 <a href="https://github.com/shadowsocks/kcptun" title="Kcptun" target="_blank" rel="external">Kcptun</a> 加速 （会影响 TCP Fast Open 的正常工作，请自行取舍）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(dpkg --print-architecture)</span>"</span></div><div class="line"><span class="comment"># 运行以上命令，查看 Linux 硬件版本</span></div></pre></td></tr></table></figure>
+<p>在<strong><a href="https://github.com/shadowsocks/kcptun" title="这里" target="_blank" rel="external">这里</a></strong>获取最新的预编译版本 Kcptun (Go) 下载地址 （注意选择相应的 Linux 系统版本）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget [获取的下载地址]</div><div class="line"><span class="comment"># 运行以上命令，下载预编译版本 Kcptun</span></div><div class="line">tar -zxvf [下载后的文件名]</div><div class="line"><span class="comment"># 运行以上命令，解压预编译文件</span></div><div class="line">./[解压后的文件名] -t <span class="string">"[服务器目标IPv4]:[Kcptun目标端口]"</span> -l <span class="string">":[Kcptun监听端口]"</span></div><div class="line"><span class="comment"># 运行以上命令启动 Kcptun，具体配置请参考官方 README*</span></div></pre></td></tr></table></figure>
+<p>*<a href="https://github.com/shadowsocks/kcptun/blob/shadowsocks/README.en.md" title="kcptun/README" target="_blank" rel="external">kcptun/README</a> 官方文档</p>
+<h3 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h3><p><strong>①Web Server 的伪装 （使用 TCP80 或TCP 443 为端口的 Shadowsocks 服务器效果更佳）</strong></p>
+<p>可以使用 <a href="https://en.m.wikipedia.org/wiki/Apache_HTTP_Server" title="Apache" target="_blank" rel="external">Apache</a> 来构建一个网站服务器，用于隐藏 Shadowsocks 服务器的特征，防止 Shadowsocks 服务器被运营商或防火墙的主动探测发现；使用以下命令配置 Apache 服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-get -y install apache2</div><div class="line"><span class="comment"># 运行以上命令，安装 Apache 服务</span></div><div class="line">service apache2 start</div><div class="line"><span class="comment"># 运行以上命令，启动 Apache 服务*</span></div></pre></td></tr></table></figure>
+<p>*若在 TCP80 端口开放或 Shadowsocks 已经连接的状况下在浏览器中输入服务器的 IP 并访问，出现 <code>It’s works!</code> 即为成功配置 Apache Server ；关于安全性加强，请参考②封禁恶意访问 IP</p>
+<p>*究其根本，使用较新的 AEAD 流加密更加有效，以上方法仅在某种层面具有一定的效果</p>
+<p><strong>②封禁恶意访问 IP</strong></p>
+<p>⒈使用 <a href="https://en.m.wikipedia.org/wiki/Fail2ban" title="fail2ban" target="_blank" rel="external">fail2ban</a> 来阻止恶意的 SSH 和 Apache Web Server 攻击者，主要是解决潜在的用户攻击者 （比如那些有权限连接到你的 Shadowsocks 服务器的设备可能会绕开实例的外部防火墙，因此单纯配置 Firewall 并不是完全有用的）；首先使用以下命令安装 fail2ban</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get -y install fail2ban</div><div class="line"><span class="comment"># 运行以上命令，安装 fail2ban</span></div></pre></td></tr></table></figure>
+<p>使用命令 <code>nano /etc/fail2ban/jail.local</code> 按情况添加以下部分代码并保存来配置 fail2ban 规则，首先是 SSH 规则代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[ssh-iptables]</div><div class="line">enabled = <span class="literal">true</span></div><div class="line">filter     = sshd</div><div class="line">action   = iptables[name=SSH, port=ssh, protocol=tcp]</div><div class="line">logpath = /var/<span class="built_in">log</span>/auth.log</div></pre></td></tr></table></figure>
+<p>*若开启了 Apache Web Server 伪装，还须添加如下代码保证 Web Server 的安全</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[apache-tcpwrapper]</div><div class="line">enabled = <span class="literal">true</span></div><div class="line">filter     = apache-auth</div><div class="line">action   = hostdeny</div><div class="line">logpath = /var/<span class="built_in">log</span>/httpd/error_log</div><div class="line">	</div><div class="line">[apache-badbots]</div><div class="line">enabled = <span class="literal">true</span></div><div class="line">filter     = apache-badbots</div><div class="line">action   = iptables-multiport[name=BadBots, pory=<span class="string">"http,https"</span>]</div><div class="line">logpath = /var/<span class="built_in">log</span>/httpd/access_log</div><div class="line">	</div><div class="line">[apache-shorewall]</div><div class="line">enabled = <span class="literal">true</span></div><div class="line">filter     = apache-noscript</div><div class="line">action   = shorewall</div><div class="line">logpath = /var/<span class="built_in">log</span>/httpd/error_log</div></pre></td></tr></table></figure>
+<p>⒉使用 Shadowsocks 或 ShadowsocksR 自带的 <a href="https://github.com/shadowsocks/shadowsocks/wiki/Ban-Brute-Force-Crackers" title="autoban.py" target="_blank" rel="external">autoban.py</a> 来禁止恶意的 Shadowsocks 攻击 （仅限 <a href="https://en.m.wikipedia.org/wiki/Python_(programming_language" target="_blank" rel="external">Python</a> 服务端，开始前请确保你拥有 Python 环境）；首先找到你的 Shadowsocks(R) 安装路径，请使用命令 <code>cd</code> 进入目录和 <code>ls</code> 显示目录下文件或其它方式找到其<strong>安装路径</strong>，并按照如下步骤安装 <a href="https://github.com/Supervisor/supervisor" title="Supervisor" target="_blank" rel="external">Supervisor</a> （用于运行 Autoban）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get -y install supervisor</div><div class="line"><span class="comment"># 安装 Supervisor 任务管理，用于后台运行 autoban.py</span></div></pre></td></tr></table></figure>
+<p>使用命令 <code>nano /etc/supervisor/conf.d/autoban.conf</code> 创建 supervisor 配置文件，输入如下代码并保存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[program:autoban]</div><div class="line"><span class="built_in">command</span>=python autoban.py &lt; /var/<span class="built_in">log</span>/shadowsocks.log</div><div class="line">directory=[Shadowsocks(R) 安装路径]/utils</div><div class="line">autorestart=<span class="literal">true</span></div><div class="line">user=root</div></pre></td></tr></table></figure>
+<p>使用如下命令启动 Supervisor 及 Autoban （关于 Autoban 的更多信息请参考<a href="https://github.com/shadowsocks/shadowsocks/wiki/Ban-Brute-Force-Crackers" title="这里" target="_blank" rel="external"><strong>这里</strong></a>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">service supervisor start</div><div class="line"><span class="comment"># 运行以上命令，启动 Supervisor 服务</span></div><div class="line">supervisorctl reload</div><div class="line"><span class="comment"># 运行以上命令，重加载 Autoban 计划</span></div></pre></td></tr></table></figure>
+<h2 id="客户端的选择"><a href="#客户端的选择" class="headerlink" title="客户端的选择"></a>客户端的选择</h2><p><strong>以下主要介绍各个平台的 GUI Based 客户端，仅供参考</strong> （Simple-Obfs 为 Shadowsocks-libev 的混淆标准，不支持 Simple-Obfs 并不意味着不支持 ShadowsocksR 的 Obfs-Plugin 混淆标准；此处评价仅从 Shadowsocks-libev 的角度出发，请勿误解）</p>
+<h3 id="MacOS"><a href="#MacOS" class="headerlink" title="MacOS"></a>MacOS</h3><ul>
+<li><p><strong><a href="https://github.com/shadowsocks/ShadowsocksX-NG" title="ShadowsocksX-NG" target="_blank" rel="external">ShadowsocksX-NG</a></strong><br>免费且功能强大的客户端，支持 AEAD，Kcptun，UDP，不支持任何混淆或 TCP Fast Open，稳定性一般</p>
+</li>
+<li><p><strong><a href="http://nssurge.com/" title="Surge" target="_blank" rel="external">Surge</a></strong><br>价格昂贵的网络调试工具，支持 AEAD，TCP Fast Open，同时支持 Simple-Obfs 的 http 混淆 （tls 适配中），稳定性极佳</p>
+</li>
+</ul>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ul>
+<li><p><strong><a href="https://github.com/shadowsocks/shadowsocks-windows" title="Shadowsocks-windows" target="_blank" rel="external">Shadowsocks-windows</a></strong><br>免费易用的官方客户端，支持 AEAD，UDP，TCP Fast Open 还在测试中，但不支持 Simple-Obfs，稳定性极佳</p>
+</li>
+<li><p><strong><a href="https://github.com/shadowsocks/shadowsocks-qt5" title="Shadowsocks-qt5" target="_blank" rel="external">Shadowsocks-qt5</a></strong><br>免费易用的跨平台客户端，但目前不支持 AEAD，TCP Fast Open 和 Simple-Obfs，稳定性一般</p>
+</li>
+</ul>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li><p><strong><a href="https://github.com/shadowsocks/shadowsocks-qt5" title="Shadowsocks-qt5" target="_blank" rel="external">Shadowsocks-qt5</a></strong><br>免费易用的跨平台客户端，但目前不支持 AEAD，TCP Fast Open 和 Simple-Obfs，稳定性一般</p>
+</li>
+<li><p><strong><a href="https://github.com/avege/avege" title="Avege" target="_blank" rel="external">Avege</a></strong><br>免费易用的跨平台客户端，主要适配 ShadowsocksR (与 Shadowsocks-libev 兼容)，不支持 AEAD，TCP Fast Open 和 Simple-Obfs，稳定性一般</p>
+</li>
+</ul>
+<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul>
+<li><p><strong><a href="https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8&amp;uo=4&amp;at=10lJSw&amp;ct=appcards" title="Shadowrocket" target="_blank" rel="external">Shadowrocket</a></strong><br>目前最强大的Shadowsocks (R) 付费客户端之一，支持 AEAD，ObfsPlugin，可自定义规则，稳定性一般</p>
+</li>
+<li><p><strong><a href="https://itunes.apple.com/us/app/potatso-2-ultimate-networking-tool/id1162704202?mt=8&amp;uo=4&amp;at=10lJSw&amp;ct=appcards" title="Potatso 2" target="_blank" rel="external">Potatso 2</a></strong><br>方便易用的付费客户端，支持 AEAD，Obfs-Plugin，UDP可自定义规则，稳定性一般</p>
+</li>
+<li><p><strong><a href="https://itunes.apple.com/cn/app/surge-web-developer-tool-proxy/id1040100637?mt=8&amp;uo=4&amp;at=10lJSw&amp;ct=appcards" title="Surge" target="_blank" rel="external">Surge</a></strong><br>昂贵的网络调试工具，支持 AEAD，TCP Fast Open，Simple-Obfs，MitM 可自定义规则，稳定性极佳</p>
+</li>
+</ul>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li><strong><a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks&amp;hl=zh_CN&amp;uo=4&amp;ct=appcards" title="Shadowsocks" target="_blank" rel="external">Shadowsocks</a></strong><br>免费开源的官方客户端，支持 AEAD，TCP Fast Open，Simple-Obfs，Kcptun，UDP，TCP Fast Open (需要 root 权限)，功能十分全面，但稳定性一般</li>
+</ul>
+<h3 id="OpenWRT"><a href="#OpenWRT" class="headerlink" title="OpenWRT"></a>OpenWRT</h3><ul>
+<li><strong><a href="https://github.com/shadowsocks/openwrt-shadowsocks" title="OpenWRT-Shadowsocks" target="_blank" rel="external">OpenWRT-Shadowsocks</a></strong><br>开源的官方客户端，支持 AEAD，TCP Fast Open，Simple-Obfs，UDP；<strong>配合 <a href="https://github.com/shadowsocks/ChinaDNS" title="ChinaDNS" target="_blank" rel="external">ChinaDNS</a> 和 <a href="https://github.com/shadowsocks/luci-app-shadowsocks" title="luci-app-shadowsocks" target="_blank" rel="external">luci-app-shadowsocks</a> (GUI) 使用 （官方 <a href="https://github.com/shadowsocks/luci-app-shadowsocks/wiki" title="Wiki" target="_blank" rel="external">Wiki</a>）</strong>，稳定性一般。其中 ChinaDNS，luci-app-shadowsocks 一般可直接在路由器 <strong>管理界面&gt;软件 （Software） </strong>中安装，后者依赖两个包 <code>iptables</code>  和  <code>ipset</code>；若有 Shadowsocks-libev 缺失情况，可参照命令安装*</li>
+</ul>
+<p>*命令安装</p>
+<p>在<strong><a href="https://github.com/shadowsocks/luci-app-shadowsocks" title="这里" target="_blank" rel="external">这里</a></strong>获取最新预编译 <code>.ipk</code> 地址，使用 <a href="https://en.wikipedia.org/wiki/Telnet" title="Telnet" target="_blank" rel="external">Telnet</a> 或 SSH 连接到你的路由，使用以下命令进行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">opkg install wget</div><div class="line"># 运行以上命令安装 wget 服务，用于下载 .ipk 到路由器</div><div class="line">wget [获取的.ipk地址]</div><div class="line"># 运行以上命令下载 .ipk 到路由；下载前应注意路由器 CPU 型号，确保选择了正确的 .ipk</div><div class="line">dpkg -i [下载后的.ipk路径或名称]</div><div class="line"># 运行以上命令安装客户端</div></pre></td></tr></table></figure>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>引用一句 <a href="https://github.com/clowwindy" title="clowwindy" target="_blank" rel="external">clowwindy</a> 的话：</p>
+<blockquote>
+<p>往往不需要政府造墙，网民也会自发造墙</p>
+</blockquote>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/12/bbr/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一键安装最新内核并开启 BBR 脚本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/08/shadowrocket-manual/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Shadowrocket 使用简单说明</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/AppSo" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2017 AppSo 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/AppSo" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

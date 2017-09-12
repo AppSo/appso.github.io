@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>一键安装最新内核并开启 BBR 脚本 | AppSo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，最新的 4.11 版内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。根据实地测试，在部署了最新版内核并开启了 TCP BBR 的机器上，网速甚至可以提升好几个数量级。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一键安装最新内核并开启 BBR 脚本">
+<meta property="og:url" content="http://yoursite.com/2017/09/12/bbr/index.html">
+<meta property="og:site_name" content="AppSo">
+<meta property="og:description" content="最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，最新的 4.11 版内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。根据实地测试，在部署了最新版内核并开启了 TCP BBR 的机器上，网速甚至可以提升好几个数量级。">
+<meta property="og:updated_time" content="2017-09-12T08:42:40.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一键安装最新内核并开启 BBR 脚本">
+<meta name="twitter:description" content="最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，最新的 4.11 版内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。根据实地测试，在部署了最新版内核并开启了 TCP BBR 的机器上，网速甚至可以提升好几个数量级。">
+  
+    <link rel="alternative" href="/atom.xml" title="AppSo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-bbr" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一键安装最新内核并开启 BBR 脚本
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/12/bbr/" class="article-date">
+  <time datetime="2017-09-11T20:55:47.000Z" itemprop="datePublished">2017-09-12</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，最新的 4.11 版内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。<br>根据实地测试，在部署了最新版内核并开启了 TCP BBR 的机器上，网速甚至可以提升好几个数量级。</p>
+<a id="more"></a>
+<blockquote>
+<p>本脚本适用环境</p>
+</blockquote>
+<p>系统支持：CentOS 6+，Debian 7+，Ubuntu 12+<br>虚拟技术：OpenVZ 以外的，比如 KVM、Xen、VMware 等<br>内存要求：≥128M</p>
+<h3 id="关于本脚本"><a href="#关于本脚本" class="headerlink" title="关于本脚本"></a>关于本脚本</h3><p>1、本脚本在大部分 VPS 测试通过。<br>2、当脚本检测到 VPS 的虚拟方式为 OpenVZ 时，会提示错误，并自动退出安装。<br>3、脚本运行完重启发现开不了机的，打开 VPS 后台控制面板的 VNC, 开机卡在 grub 引导, 手动选择内核即可。<br>4、由于是使用最新版系统内核，最好请勿在生产环境安装，以免产生不可预测之后果。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>使用 root 用户登录，运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</div><div class="line">chmod +x bbr.sh</div><div class="line">./bbr.sh</div></pre></td></tr></table></figure>
+<p>安装完成后，脚本会提示需要重启 VPS，输入 <code>y</code> 并回车后重启。<br>重启完成后，进入 VPS，验证一下是否成功安装最新内核并开启 TCP BBR，输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uname -r</div></pre></td></tr></table></figure>
+<p>查看内核版本，含有 <code>4.12</code> 就表示 OK 了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl net.ipv4.tcp_available_congestion_control</div></pre></td></tr></table></figure>
+<p>返回值一般为：<br><code>net.ipv4.tcp_available_congestion_control = bbr cubic reno</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl net.ipv4.tcp_congestion_control</div></pre></td></tr></table></figure>
+<p>返回值一般为：<br><code>net.ipv4.tcp_congestion_control = bbr</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl net.core.default_qdisc</div></pre></td></tr></table></figure>
+<p>返回值一般为：<br><code>net.core.default_qdisc = fq</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsmod | grep bbr</div></pre></td></tr></table></figure>
+<p>返回值有 <code>tcp_bbr</code> 模块即说明bbr已启动。</p>
+<h3 id="内核升级方法"><a href="#内核升级方法" class="headerlink" title="内核升级方法"></a>内核升级方法</h3><p>如果是 CentOS 系统，执行如下命令即可升级内核：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum --enablerepo=elrepo-kernel -y install kernel-ml kernel-ml-devel</div></pre></td></tr></table></figure>
+<p>CentOS 6 的话，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -i <span class="string">'s/^default=.*/default=0/g'</span> /boot/grub/grub.conf</div></pre></td></tr></table></figure>
+<p>CentOS 7 的话，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grub2-set-default 0</div></pre></td></tr></table></figure>
+<p>如果是 Debian / Ubuntu 系统，则需要手动下载最新版内核来安装升级。<br>去<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/" title="这里" target="_blank" rel="external">这里</a>下载最新版的内核 deb 安装包。<br>如果系统是 64 位，则下载 amd64 的 linux-image 中含有 <code>generic</code> 这个 deb 包；<br>如果系统是 32 位，则下载 i386 的 linux-image 中含有 <code>generic</code> 这个 deb 包；<br>安装的命令如下（以最新版的 64 位 4.12.4 举例而已，请替换为下载好的 deb 包）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg -i linux-image-4.12.4-041204-generic_4.12.4-041204.201707271932_amd64.deb</div></pre></td></tr></table></figure>
+<p>安装完成后，再执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/sbin/update-grub</div></pre></td></tr></table></figure>
+<p>最后，重启 VPS 即可。</p>
+<h3 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a>特别说明</h3><p>如果你使用的是 Google Cloud Platform（GCP）更换内核，有时会遇到重启后，整个磁盘变为只读的情况。只需执行以下命令即可恢复：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount -o remount rw /</div></pre></td></tr></table></figure>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/12/authentication/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SSH 无密码登录及 putty 设置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/11/breakwall/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">翻墙小结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/AppSo" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2017 AppSo 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/AppSo" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
