@@ -28,6 +28,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-block-port-25" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/12/block-port-25/">block-port-25</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/12/block-port-25/" class="article-date">
+  <time datetime="2017-09-12T10:06:51.000Z" itemprop="datePublished">2017-09-12</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###屏蔽 25 端口防止垃圾邮件</p>
+<p>VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。</p>
+<p>运行以下命令，添加防火墙规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -p tcp --dport 25 -j DROP</div><div class="line">iptables -A INPUT -p udp --dport 25 -j DROP</div><div class="line">iptables -A OUTPUT -p tcp --dport 25 -j DROP</div><div class="line">iptables -A OUTPUT -p udp --dport 25 -j DROP</div></pre></td></tr></table></figure>
+<p>保存规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables-save &gt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
+<p>编辑 <code>/etc/network/interfaces</code> ，在最后添加以下内容，使防火墙开机加载屏蔽规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pre-up iptables-restore &lt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
+      
+
+      
+        
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-authentication" class="article article-type-post" itemscope itemprop="blogPost">
   
   <div class="article-inner">
