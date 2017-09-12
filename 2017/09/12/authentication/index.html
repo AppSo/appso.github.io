@@ -1,59 +1,226 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>SSH 无密码登录及 putty 设置 | AppSo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生成公钥和私钥Linux 系统中绝大部分的发行版都是用 OpenSSH，所以生成公钥私钥的时候最好用 ssh-keygen 命令，如果用 putty 自带的 PUTTYGEN.EXE 生成会不兼容 OpenSSH，从而会导致登录时出现 server refused our key 错误。 用 root 登录后运行命令如下。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SSH 无密码登录及 putty 设置">
-<meta property="og:url" content="http://yoursite.com/2017/09/12/authentication/index.html">
-<meta property="og:site_name" content="AppSo">
-<meta property="og:description" content="生成公钥和私钥Linux 系统中绝大部分的发行版都是用 OpenSSH，所以生成公钥私钥的时候最好用 ssh-keygen 命令，如果用 putty 自带的 PUTTYGEN.EXE 生成会不兼容 OpenSSH，从而会导致登录时出现 server refused our key 错误。 用 root 登录后运行命令如下。">
-<meta property="og:image" content="http://yoursite.com/images/keygen_1.png">
-<meta property="og:image" content="http://yoursite.com/images/keygen_2.png">
-<meta property="og:updated_time" content="2017-09-12T08:42:23.849Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SSH 无密码登录及 putty 设置">
-<meta name="twitter:description" content="生成公钥和私钥Linux 系统中绝大部分的发行版都是用 OpenSSH，所以生成公钥私钥的时候最好用 ssh-keygen 命令，如果用 putty 自带的 PUTTYGEN.EXE 生成会不兼容 OpenSSH，从而会导致登录时出现 server refused our key 错误。 用 root 登录后运行命令如下。">
-<meta name="twitter:image" content="http://yoursite.com/images/keygen_1.png">
-  
-    <link rel="alternative" href="/atom.xml" title="AppSo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="SSH 无密码登录及 putty 设置"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AppSo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/09/12/authentication/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
   
 
-</head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div class="outer">
-        <section id="main"><article id="post-authentication" class="article article-type-post" itemscope itemprop="blogPost">
+
+
   
-  <div class="article-inner">
+
+
+
+
+
+
+
+
+    <title> SSH 无密码登录及 putty 设置 - AppSo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">AppSo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
     
-      <header class="article-header">
-        
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">AppSo</a>
+</div>
+
+<nav class="site-navbar">
   
-    <h1 class="article-title" itemprop="name">
-      SSH 无密码登录及 putty 设置
-    </h1>
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
   
+</nav>
 
       </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          SSH 无密码登录及 putty 设置
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-12
+        </span>
+        
+        
+      </div>
+    </header>
+
     
-    <div class="article-meta">
-      <a href="/2017/09/12/authentication/" class="article-date">
-  <time datetime="2017-09-11T21:14:01.000Z" itemprop="datePublished">2017-09-12</time>
-</a>
-      
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成公钥和私钥"><span class="toc-text">生成公钥和私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入公钥"><span class="toc-text">导入公钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更改-SSH-配置文件"><span class="toc-text">更改 SSH 配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作用于-putty-的私钥"><span class="toc-text">制作用于 putty 的私钥</span></a></li></ol>
     </div>
-    <div class="article-entry" itemprop="articleBody">
+  </div>
+
+
+    <div class="post-content">
       
         <h3 id="生成公钥和私钥"><a href="#生成公钥和私钥" class="headerlink" title="生成公钥和私钥"></a>生成公钥和私钥</h3><p>Linux 系统中绝大部分的发行版都是用 OpenSSH，所以生成公钥私钥的时候最好用 <code>ssh-keygen</code> 命令，如果用 putty 自带的 PUTTYGEN.EXE 生成会不兼容 OpenSSH，从而会导致登录时出现 <code>server refused our key</code> 错误。</p>
 <p>用 root 登录后运行命令如下。</p>
@@ -77,88 +244,148 @@
 <p>至此，就只能用私钥登录到 VPS 了，安全性大大增强。</p>
 
       
+    </div>
+
+    
+      
+      
+
+
 
       
-        
-    </div>
-  </div>
-  
+      
     
-<nav id="article-nav">
-  
-    <a href="/2017/09/12/block-port-25/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+
+    
+      <footer class="post-footer">
         
-          block-port-25
         
-      </div>
-    </a>
-  
-  
-    <a href="/2017/09/12/bbr/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">一键安装最新内核并开启 BBR 脚本</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        <aside id="sidebar">
-  <nav class="menus">
-  	<ul>
-  		<li><a href="/"><i class="icon icon-home"></i></a></li>
-  		
-			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
-  		
-  		
-			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
-  		
-  		
-  			<li><a href="https://github.com/AppSo" target="_blank"><i class="icon icon-github"></i></a></li>
-  		
-  	</ul>
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/12/block-port-25/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">屏蔽 25 端口防止垃圾邮件</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/12/bbr/">
+        <span class="next-text nav-default">一键安装最新内核并开启 BBR 脚本</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
   </nav>
-  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
-</aside>
 
-      </div>
-      <footer id="footer">
-  
-	<div id="footer-info" class="inner">
-	  &copy; 2017 AppSo 
-	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
-	</div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tag</a>
-  
-    <a href="https://github.com/AppSo" class="mobile-nav-link">Github</a>
-  
-</nav>
+      </footer>
     
 
-<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+  </article>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
+          </div>
+          
+  <div class="comments" id="comments">
+    
   </div>
-</body>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">AppSo</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
 </html>

@@ -1,139 +1,365 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>block-port-25 | AppSo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###屏蔽 25 端口防止垃圾邮件 VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。 运行以下命令，添加防火墙规则 1234iptables -A INPUT -p tcp --dport 25 -j DROPiptables -A INPUT -p udp --dport 25 -j DROPiptables -A OUTPUT -p tcp --dpo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="block-port-25">
-<meta property="og:url" content="http://yoursite.com/2017/09/12/block-port-25/index.html">
-<meta property="og:site_name" content="AppSo">
-<meta property="og:description" content="###屏蔽 25 端口防止垃圾邮件 VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。 运行以下命令，添加防火墙规则 1234iptables -A INPUT -p tcp --dport 25 -j DROPiptables -A INPUT -p udp --dport 25 -j DROPiptables -A OUTPUT -p tcp --dpo">
-<meta property="og:updated_time" content="2017-09-12T10:23:53.333Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="block-port-25">
-<meta name="twitter:description" content="###屏蔽 25 端口防止垃圾邮件 VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。 运行以下命令，添加防火墙规则 1234iptables -A INPUT -p tcp --dport 25 -j DROPiptables -A INPUT -p udp --dport 25 -j DROPiptables -A OUTPUT -p tcp --dpo">
-  
-    <link rel="alternative" href="/atom.xml" title="AppSo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="屏蔽 25 端口防止垃圾邮件"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AppSo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/09/12/block-port-25/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
   
 
-</head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div class="outer">
-        <section id="main"><article id="post-block-port-25" class="article article-type-post" itemscope itemprop="blogPost">
+
+
   
-  <div class="article-inner">
+
+
+
+
+
+
+
+
+    <title> 屏蔽 25 端口防止垃圾邮件 - AppSo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">AppSo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
     
-      <header class="article-header">
-        
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">AppSo</a>
+</div>
+
+<nav class="site-navbar">
   
-    <h1 class="article-title" itemprop="name">
-      block-port-25
-    </h1>
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
   
+</nav>
 
       </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          屏蔽 25 端口防止垃圾邮件
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-12
+        </span>
+        
+        
+      </div>
+    </header>
+
     
-    <div class="article-meta">
-      <a href="/2017/09/12/block-port-25/" class="article-date">
-  <time datetime="2017-09-12T10:06:51.000Z" itemprop="datePublished">2017-09-12</time>
-</a>
+    
+
+    <div class="post-content">
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###屏蔽 25 端口防止垃圾邮件</p>
-<p>VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。</p>
-<p>运行以下命令，添加防火墙规则</p>
+        <p>VPS 在被利用发送垃圾邮件的时候会被服务商判定为 spam 行为，导致 VPS 被暂停。</p>
+<p>运行以下命令，添加防火墙规则，屏蔽 25 端口</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -p tcp --dport 25 -j DROP</div><div class="line">iptables -A INPUT -p udp --dport 25 -j DROP</div><div class="line">iptables -A OUTPUT -p tcp --dport 25 -j DROP</div><div class="line">iptables -A OUTPUT -p udp --dport 25 -j DROP</div></pre></td></tr></table></figure>
 <p>保存规则</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables-save &gt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/network/interfaces</code> ，在最后添加以下内容，使防火墙开机加载屏蔽规则</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pre-up iptables-restore &lt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
       
+    </div>
+
+    
+      
+      
+
+
 
       
+      
+    
+
+    
+      <footer class="post-footer">
         
-    </div>
-  </div>
-  
+        
+        
+  <nav class="post-nav">
     
-<nav id="article-nav">
-  
-  
-    <a href="/2017/09/12/authentication/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SSH 无密码登录及 putty 设置</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        <aside id="sidebar">
-  <nav class="menus">
-  	<ul>
-  		<li><a href="/"><i class="icon icon-home"></i></a></li>
-  		
-			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
-  		
-  		
-			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
-  		
-  		
-  			<li><a href="https://github.com/AppSo" target="_blank"><i class="icon icon-github"></i></a></li>
-  		
-  	</ul>
+    
+      <a class="next" href="/2017/09/12/authentication/">
+        <span class="next-text nav-default">SSH 无密码登录及 putty 设置</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
   </nav>
-  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
-</aside>
 
-      </div>
-      <footer id="footer">
-  
-	<div id="footer-info" class="inner">
-	  &copy; 2017 AppSo 
-	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
-	</div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tag</a>
-  
-    <a href="https://github.com/AppSo" class="mobile-nav-link">Github</a>
-  
-</nav>
+      </footer>
     
 
-<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+  </article>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
+          </div>
+          
+  <div class="comments" id="comments">
+    
   </div>
-</body>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">AppSo</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
 </html>
