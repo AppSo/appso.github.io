@@ -246,11 +246,11 @@
 </li>
 </ul>
 <p><em>*云服务平台的质量随时都在变化，以上仅供参考</em></p>
-<h2 id="科学上网服务端搭建"><a href="#科学上网服务端搭建" class="headerlink" title="科学上网服务端搭建"></a>科学上网服务端搭建</h2><h3 id="搭建-Shadowsocks-libev-服务器"><a href="#搭建-Shadowsocks-libev-服务器" class="headerlink" title="搭建 Shadowsocks-libev 服务器"></a>搭建 Shadowsocks-libev 服务器</h3><p><strong>Q1.为什么使用 Shadowsocks 协议？</strong></p>
+<h2 id="科学上网服务端搭建"><a href="#科学上网服务端搭建" class="headerlink" title="科学上网服务端搭建"></a>科学上网服务端搭建</h2><h3 id="搭建-Shadowsocks-libev-服务器"><a href="#搭建-Shadowsocks-libev-服务器" class="headerlink" title="搭建 Shadowsocks-libev 服务器"></a>搭建 Shadowsocks-libev 服务器</h3><p><strong><em>Q1.为什么使用 Shadowsocks 协议？</em></strong></p>
 <blockquote>
 <p>相比传统的 VPN （IKE、IPSec、PPTP …），Shadowsocks 协议具有更好的灵活性和隐蔽性，且搭建相对简单，因此可以拥有相对传统 VPN 更快的速度和更高的稳定性；另对比 <a href="https://www.v2ray.com/" target="_blank" rel="external">V2Ray</a> 这种科学上网的集合体，Shadowsocks 在服务端更加轻量，单一协议完善程度更高；在移动端有更丰富的客户端选择，兼容性和灵活性更优。关于 Shadowsocks 的协议特点，原理及弱点的更多讨论，可以在<strong><a href="https://github.com/breakwa11/shadowsocks-rss/issues/38" title="这里" target="_blank" rel="external">这里</a></strong>稍做了解，本文不对此长篇大论</p>
 </blockquote>
-<p><strong>Q2.为什么使用 <a href="https://github.com/shadowsocks/shadowsocks-libev" target="_blank" rel="external">Shadowsock-libev</a> 服务端？</strong></p>
+<p><strong><em>Q2.为什么使用 <a href="https://github.com/shadowsocks/shadowsocks-libev" target="_blank" rel="external">Shadowsock-libev</a> 服务端？</em></strong></p>
 <blockquote>
 <p>相比原版 <a href="https://github.com/shadowsocks/shadowsocks" title="Shadowsocks" target="_blank" rel="external">Shadowsocks</a> (Python)，libev (C#) 版本提供了更多的特性支持；而关于<a href="https://github.com/shadowsocksr/shadowsocksr" title="ShadowsocksR" target="_blank" rel="external">ShadowsocksR</a> (Python)，Shadowsocks-libev 率先支持 <strong><a href="https://en.m.wikipedia.org/wiki/Authenticated_encryption" title="AEAD" target="_blank" rel="external">AEAD</a></strong> 加密，并向 ShadowsocksR 学习引进了 <strong><a href="https://github.com/shadowsocksr/obfsplugin" title="Obfs" target="_blank" rel="external">Obfs</a></strong> （<a href="https://github.com/shadowsocks/simple-obfs" title="Simple-Obfs" target="_blank" rel="external">Simple-Obfs</a>，但与前者原理有所不同），且提供稳定的周期性更新；关于未来，ShadowsocksR 更倾向于 none 加密策略，而 Shadowsocks-libev 则倾向于传统的加密策略，两者有不同的侧重点 （ShadowsocksR 更侧重消除特征以避免被检测识别，而 Shadowsocks-libev 则追求更高的安全性），综合起来并无优劣之分</p>
 </blockquote>
