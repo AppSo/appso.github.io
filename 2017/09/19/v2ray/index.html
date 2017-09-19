@@ -225,7 +225,7 @@
         <h2 id="V2Ray-安装"><a href="#V2Ray-安装" class="headerlink" title="V2Ray 安装"></a>V2Ray 安装</h2><p>V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自动检测有没有安装过 V2Ray，如果没有，则进行完整的安装和配置；如果之前安装过 V2Ray，则只更新 V2Ray 二进制程序而不更新配置。</p>
 <p>以下指令假设已在 su 环境下，如果不是，请先运行 <code>sudo su</code>。</p>
 <p>运行下面的指令下载并安装 V2Ray。当 yum 或 apt-get 可用的情况下，此脚本会自动安装 unzip 和 daemon。这两个组件是安装 V2Ray 的必要组件。如果你使用的系统不支持 yum 或 apt-get，请自行安装 unzip 和 daemon。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash &lt;(curl -L -s https://install.direct/go.sh)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash &lt;(curl -L -s https://gist.githubusercontent.com/AppSo/b1c9b34a1a4012eb381abc0eec5101cb/raw/abe22c8beab63af2bef04ca04395a390f6ff1788/v2ray.sh)</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>此脚本会自动安装以下文件：</p>
 <ul>
@@ -263,8 +263,10 @@
 <li><code>kcpSettings</code>: 包含一些关于 mKCP 设置的参数，有<ul>
 <li><code>uplinkCapacity</code>: 上行链路容量，将决定 V2Ray 向外发送数据包的速率。单位为 MB</li>
 <li><code>downlinkCapacity</code>：下行链路容量，将决定 V2Ray 接收数据包的速率。单位同样是 MB</li>
-<li><code>header</code>：对于数据包的伪装</li>
+<li><code>header</code>：对于数据包的伪装<ul>
 <li><code>type</code>：要伪装成的数据包类型</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
