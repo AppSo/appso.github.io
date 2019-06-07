@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="V2Ray 教程">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AppSo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/09/19/v2ray/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-108901925-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+    <title> V2Ray 教程 - AppSo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">AppSo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">AppSo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          V2Ray 教程
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#V2Ray-安装"><span class="toc-text">V2Ray 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V2Ray-配置"><span class="toc-text">V2Ray 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-模式（支持-TLS）"><span class="toc-text">TCP 模式（支持 TLS）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务器配置"><span class="toc-text">服务器配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置"><span class="toc-text">客户端配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket-模式-（支持-TLS）"><span class="toc-text">WebSocket 模式 （支持 TLS）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务器配置-1"><span class="toc-text">服务器配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置-1"><span class="toc-text">客户端配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mKCP-模式"><span class="toc-text">mKCP 模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务器配置-2"><span class="toc-text">服务器配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#客户端配置-2"><span class="toc-text">客户端配置</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="V2Ray-安装"><a href="#V2Ray-安装" class="headerlink" title="V2Ray 安装"></a>V2Ray 安装</h2><p>V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自动检测有没有安装过 V2Ray，如果没有，则进行完整的安装和配置；如果之前安装过 V2Ray，则只更新 V2Ray 二进制程序而不更新配置。</p>
+<p>以下指令假设已在 su 环境下，如果不是，请先运行 <code>sudo su</code>。</p>
+<p>运行下面的指令下载并安装 V2Ray。当 yum 或 apt-get 可用的情况下，此脚本会自动安装 unzip 和 daemon。这两个组件是安装 V2Ray 的必要组件。如果你使用的系统不支持 yum 或 apt-get，请自行安装 unzip 和 daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://install.direct/go.sh)</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>此脚本会自动安装以下文件：</p>
+<ul>
+<li><code>/usr/bin/v2ray/v2ray</code>：V2Ray 程序</li>
+<li><code>/etc/v2ray/config.json</code>：配置文件</li>
+</ul>
+<p>此脚本会配置自动运行脚本。自动运行脚本会在系统重启之后，自动运行 V2Ray。目前自动运行脚本只支持带有 Systemd 的系统，以及 Debian / Ubuntu 全系列。</p>
+<p>运行脚本位于系统的以下位置：</p>
+<ul>
+<li><code>/lib/systemd/system/v2ray.service</code>：Systemd</li>
+<li><code>/etc/init.d/v2ray</code>：SysV</li>
+</ul>
+<p>脚本运行完成后，你需要：</p>
+<ol>
+<li>编辑 <code>/etc/v2ray/config.json</code> 文件来配置你需要的代理方式；</li>
+<li>运行 <code>service v2ray start</code> 来启动 V2Ray 进程；</li>
+<li>之后可以使用 <code>service v2ray start|stop|status|reload|restart|force-reload</code> 控制 V2Ray 的运行。</li>
+</ol>
+<h2 id="V2Ray-配置"><a href="#V2Ray-配置" class="headerlink" title="V2Ray 配置"></a>V2Ray 配置</h2><p>V2Ray 共有三种传输方式，可以形成三种使用方案。</p>
+<h3 id="TCP-模式（支持-TLS）"><a href="#TCP-模式（支持-TLS）" class="headerlink" title="TCP 模式（支持 TLS）"></a>TCP 模式（支持 TLS）</h3><p>使用TCP来传输，这种方式和其它代理应用模式上差不多。TCP 模式可以使用 HTTP/TLS 混淆来模拟 HTTP 网站流量，但也只是模拟，并不是真实的 HTTP 流量。</p>
+<p>header 项是关于数据包伪装的设置，可自定义合理的内容，但要确保服务器与客户端一致</p>
+<h4 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"log"</span> : &#123;</span><br><span class="line">    <span class="attr">"access"</span>: <span class="string">"/var/log/v2ray/access.log"</span>,</span><br><span class="line">    <span class="attr">"error"</span>: <span class="string">"/var/log/v2ray/error.log"</span>,</span><br><span class="line">    <span class="attr">"loglevel"</span>: <span class="string">"warning"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"clients"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">          <span class="attr">"level"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">      <span class="attr">"network"</span>: <span class="string">"tcp"</span>,</span><br><span class="line">      <span class="attr">"tcpSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"header"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"http"</span>,</span><br><span class="line">          <span class="attr">"response"</span>: &#123;</span><br><span class="line">            <span class="attr">"version"</span>: <span class="string">"1.1"</span>,</span><br><span class="line">            <span class="attr">"status"</span>: <span class="string">"200"</span>,</span><br><span class="line">            <span class="attr">"reason"</span>: <span class="string">"OK"</span>,</span><br><span class="line">            <span class="attr">"headers"</span>: &#123;</span><br><span class="line">              <span class="attr">"Content-Type"</span>: [<span class="string">"application/octet-stream"</span>, <span class="string">"application/x-msdownload"</span>, <span class="string">"text/html"</span>, <span class="string">"application/x-shockwave-flash"</span>],</span><br><span class="line">              <span class="attr">"Transfer-Encoding"</span>: [<span class="string">"chunked"</span>],</span><br><span class="line">              <span class="attr">"Connection"</span>: [<span class="string">"keep-alive"</span>],</span><br><span class="line">              <span class="attr">"Pragma"</span>: <span class="string">"no-cache"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outboundDetour"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"blackhole"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"blocked"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"routing"</span>: &#123;</span><br><span class="line">    <span class="attr">"strategy"</span>: <span class="string">"rules"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"rules"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">          <span class="attr">"ip"</span>: [</span><br><span class="line">            <span class="string">"0.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"10.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"100.64.0.0/10"</span>,</span><br><span class="line">            <span class="string">"127.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"169.254.0.0/16"</span>,</span><br><span class="line">            <span class="string">"172.16.0.0/12"</span>,</span><br><span class="line">            <span class="string">"192.0.0.0/24"</span>,</span><br><span class="line">            <span class="string">"192.0.2.0/24"</span>,</span><br><span class="line">            <span class="string">"192.168.0.0/16"</span>,</span><br><span class="line">            <span class="string">"198.18.0.0/15"</span>,</span><br><span class="line">            <span class="string">"198.51.100.0/24"</span>,</span><br><span class="line">            <span class="string">"203.0.113.0/24"</span>,</span><br><span class="line">            <span class="string">"::1/128"</span>,</span><br><span class="line">            <span class="string">"fc00::/7"</span>,</span><br><span class="line">            <span class="string">"fe80::/10"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"outboundTag"</span>: <span class="string">"blocked"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"log"</span>: &#123;</span><br><span class="line">    <span class="attr">"loglevel"</span>: <span class="string">"warning"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"auth"</span>: <span class="string">"noauth"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"vnext"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"address"</span>: <span class="string">"serveraddr.com"</span>,</span><br><span class="line">          <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">          <span class="attr">"users"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">              <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>: &#123;</span><br><span class="line">      <span class="attr">"network"</span>: <span class="string">"tcp"</span>,</span><br><span class="line">      <span class="attr">"tcpSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"header"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"http"</span>,</span><br><span class="line">          <span class="attr">"request"</span>: &#123;</span><br><span class="line">            <span class="attr">"version"</span>: <span class="string">"1.1"</span>,</span><br><span class="line">            <span class="attr">"method"</span>: <span class="string">"GET"</span>,</span><br><span class="line">            <span class="attr">"path"</span>: [<span class="string">"/"</span>],</span><br><span class="line">            <span class="attr">"headers"</span>: &#123;</span><br><span class="line">              <span class="attr">"Host"</span>: [<span class="string">"itunes.apple.com"</span>],</span><br><span class="line">              <span class="attr">"User-Agent"</span>: [</span><br><span class="line">                <span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36"</span>,</span><br><span class="line">                        <span class="string">"Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/601.1 (KHTML, like Gecko) CriOS/53.0.2785.109 Mobile/14A456 Safari/601.1.46"</span></span><br><span class="line">              ],</span><br><span class="line">              <span class="attr">"Accept-Encoding"</span>: [<span class="string">"gzip, deflate"</span>],</span><br><span class="line">              <span class="attr">"Connection"</span>: [<span class="string">"keep-alive"</span>],</span><br><span class="line">              <span class="attr">"Pragma"</span>: <span class="string">"no-cache"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outboundDetour"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"routing"</span>: &#123;</span><br><span class="line">    <span class="attr">"strategy"</span>: <span class="string">"rules"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"domainStrategy"</span>: <span class="string">"IPIfNonMatch"</span>,</span><br><span class="line">      <span class="attr">"rules"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">          <span class="attr">"ip"</span>: [</span><br><span class="line">            <span class="string">"0.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"10.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"100.64.0.0/10"</span>,</span><br><span class="line">            <span class="string">"127.0.0.0/8"</span>,</span><br><span class="line">            <span class="string">"169.254.0.0/16"</span>,</span><br><span class="line">            <span class="string">"172.16.0.0/12"</span>,</span><br><span class="line">            <span class="string">"192.0.0.0/24"</span>,</span><br><span class="line">            <span class="string">"192.0.2.0/24"</span>,</span><br><span class="line">            <span class="string">"192.168.0.0/16"</span>,</span><br><span class="line">            <span class="string">"198.18.0.0/15"</span>,</span><br><span class="line">            <span class="string">"198.51.100.0/24"</span>,</span><br><span class="line">            <span class="string">"203.0.113.0/24"</span>,</span><br><span class="line">            <span class="string">"::1/128"</span>,</span><br><span class="line">            <span class="string">"fc00::/7"</span>,</span><br><span class="line">            <span class="string">"fe80::/10"</span></span><br><span class="line">          ],</span><br><span class="line">          <span class="attr">"outboundTag"</span>: <span class="string">"direct"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"chinasites"</span>,</span><br><span class="line">          <span class="attr">"outboundTag"</span>: <span class="string">"direct"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"chinaip"</span>,</span><br><span class="line">          <span class="attr">"outboundTag"</span>: <span class="string">"direct"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="WebSocket-模式-（支持-TLS）"><a href="#WebSocket-模式-（支持-TLS）" class="headerlink" title="WebSocket 模式 （支持 TLS）"></a>WebSocket 模式 （支持 TLS）</h3><p>WebSocket 是一种在 HTTP 之上的协议，本质也是TCP传输，但是是天然的 HTTP 网站流量。并且可以搭配各种 HTTP 服务器（比如 Nginx, Caddy）一起使用。</p>
+<p>因为 WebSocket 已经是 HTTP 的一种，所以并不需要任何伪装（混淆）。</p>
+<p>这里主要需要一个 Nginx 作为反代，比较熟悉的人直接 <code>apt-get/yum</code> 安装 Nginx 就好，可以跳过这一步。但是 LNMP 作为解决方案对小白来说比较友好。</p>
+<p>LNMP 1.4 版 代码来源 <a href="https://lnmp.org/" target="_blank" rel="noopener">https://lnmp.org/</a> 。</p>
+<p>由于 LNMP 安装时间很长，所以我们先运行一下 <code>screen</code>。这样如果发生中断，可以重新连接 VPS 用 <code>screen -r</code> 来恢复之前的安装而不至于被中断。</p>
+<p>安装代码 <code>wget -c http://soft.vpser.net/lnmp/lnmp1.4.tar.gz &amp;&amp; tar zxf lnmp1.4.tar.gz &amp;&amp; cd lnmp1.4 &amp;&amp; ./install.sh lnmp</code>。</p>
+<p><img src="/images/LNMP.png" alt></p>
+<p>建一个虚拟机 <code>lnmp vhost add</code>。</p>
+<p>根据自己需求配置，推荐选项只适合本文开启 V2Ray 的 WS 模式。</p>
+<ul>
+<li><p>输入 VPS 绑定的域名，以 <a href="http://www.serveraddr.com" target="_blank" rel="noopener">www.serveraddr.com</a> 为例；</p>
+</li>
+<li><p>没有其他的域名直接回车，也可以加个无 www 版本 serveraddr.com；</p>
+</li>
+<li><p>默认目录，直接回车;</p>
+</li>
+<li><p>重写规则，选 n；</p>
+</li>
+<li><p>是否开启 log，选 n；</p>
+</li>
+<li><p>是否创建数据库，选 n；</p>
+</li>
+<li><p>是否添加 SSL，推荐选 y，选择 2 使用 Let’s Encrypt 自动签发证书；</p>
+</li>
+<li><p>输入自己邮箱</p>
+</li>
+</ul>
+<p><img src="/images/vhost-add.png" alt></p>
+<p>任意键开始建立网站虚拟机。虚拟机建好后，我们需要修改 Nginx 的配置。LNMP 安装的 Nginx 配置文件位于 <code>/usr/local/nginx/conf/vhost</code> 目录下，文件名为 <code>www.serveraddr.com.conf</code>。</p>
+<p>打开这个文件 <code>vi /usr/local/nginx/conf/vhost/www.serveraddr.com.conf</code>，在 server 443 端口中添加一段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location /v2ray/ &#123;</span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_pass http://127.0.0.1:10000;</span><br><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">proxy_set_header Host $http_host;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将网站目录 /v2ray/ 目录的数据全部转发到本地 10000 端口，之后配置的 V2Ray 需要监听这个端口。保存退出后，重启 Nginx：<code>service nginx restart</code>。</p>
+<p><img src="/images/Nginx.png" alt></p>
+<h4 id="服务器配置-1"><a href="#服务器配置-1" class="headerlink" title="服务器配置"></a>服务器配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">10000</span>,</span><br><span class="line">    <span class="attr">"listen"</span>:<span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"clients"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">          <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>:&#123;</span><br><span class="line">      <span class="attr">"network"</span>:<span class="string">"ws"</span></span><br><span class="line">      <span class="string">"wsSettings"</span>: &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/v2ray/"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端配置-1"><a href="#客户端配置-1" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"auth"</span>: <span class="string">"noauth"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"vnext"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"address"</span>: <span class="string">"serveraddr.com"</span>,</span><br><span class="line">          <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">          <span class="attr">"users"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">              <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>:&#123;</span><br><span class="line">      <span class="attr">"network"</span>:<span class="string">"ws"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mKCP-模式"><a href="#mKCP-模式" class="headerlink" title="mKCP 模式"></a>mKCP 模式</h3><p>使用 UDP 来传输，mKCP是以流量换速度，就是多倍发包，同一份数据发多份，防止丢包重传，所以同一条件下使用mKCP会比其他方式耗费更多流量，不建议手机4G使用。</p>
+<p>由于BT下载、游戏、以及视频聊天等也都是使用 UDP 传输，所以这种模式下可以伪装成 BT下载流量、FaceTime 流量、微信视频流量。</p>
+<p>由于 BBR 是 TCP 加速技术，所以使用 mKCP 并不能享受 BBR 的加速，不过 mKCP 本身就是一种加速技术了，也并不需要 BBR。</p>
+<h4 id="服务器配置-2"><a href="#服务器配置-2" class="headerlink" title="服务器配置"></a>服务器配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"clients"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">          <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>:&#123;</span><br><span class="line">      <span class="attr">"network"</span>:<span class="string">"kcp"</span>,</span><br><span class="line">      <span class="attr">"kcpSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"mtu"</span>: <span class="number">1350</span>,</span><br><span class="line">        <span class="attr">"tti"</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="attr">"uplinkCapacity"</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">"downlinkCapacity"</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attr">"congestion"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"readBufferSize"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"writeBufferSize"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"header"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"none"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端配置-2"><a href="#客户端配置-2" class="headerlink" title="客户端配置"></a>客户端配置</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"socks"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"auth"</span>: <span class="string">"noauth"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"outbound"</span>: &#123;</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">    <span class="attr">"settings"</span>: &#123;</span><br><span class="line">      <span class="attr">"vnext"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">"address"</span>: <span class="string">"serveraddr.com"</span>,</span><br><span class="line">          <span class="attr">"port"</span>: <span class="number">443</span>,</span><br><span class="line">          <span class="attr">"users"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="attr">"id"</span>: <span class="string">"b831381d-6324-4d53-ad4f-8cda48b30811"</span>,</span><br><span class="line">              <span class="attr">"alterId"</span>: <span class="number">64</span></span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"streamSettings"</span>:&#123;</span><br><span class="line">      <span class="attr">"network"</span>:<span class="string">"kcp"</span>,</span><br><span class="line">      <span class="attr">"kcpSettings"</span>: &#123;</span><br><span class="line">        <span class="attr">"mtu"</span>: <span class="number">1350</span>,</span><br><span class="line">        <span class="attr">"tti"</span>: <span class="number">20</span>,</span><br><span class="line">        <span class="attr">"uplinkCapacity"</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="attr">"downlinkCapacity"</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attr">"congestion"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"readBufferSize"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"writeBufferSize"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"header"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"none"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的配置当中，与之前相比主要的变化在于多了一个 streamSettings，包含有不少参数：</p>
+<ul>
+<li><code>network</code>: 网络的选择，要像上面的配置写成 kcp 才会启用 mKCP</li>
+<li><code>kcpSettings</code>: 包含一些关于 mKCP 设置的参数，有<ul>
+<li><code>uplinkCapacity</code>: 上行链路容量，将决定 V2Ray 向外发送数据包的速率。单位为 MB</li>
+<li><code>downlinkCapacity</code>：下行链路容量，将决定 V2Ray 接收数据包的速率。单位同样是 MB</li>
+<li><code>header</code>：对于数据包的伪装<ul>
+<li><code>type</code>：要伪装成的数据包类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>客户端的上行对于服务器来说是下行，同样地客户端的下行是服务器的上行，mKCP 设置当中服务器和客户端都有 uplinkCapacity 和 downlinkCapacity，所以客户端的上传速率由服务器的 downlinkCapacity 和客户端的 uplinkCapacity 中的最小值决定，客户端的下载速率也是同样的道理。因此，建议将服务器和客户端的 downlinkCapacity 设成一个很大的值，然后分别修改两端的 uplinkCapacity 以调整上下行速率。</p>
+<p>还有一个 header 参数可以对 mKCP 进行伪装，这是 mKCP 的一个优势。具体的伪装在 type 参数设置，type 可以设置成 utp、srtp、wechat-video 或者 none，这四个可以分别将 mKCP 数据伪装成 BT 下载、视频通话、微信视频通话以及不进行伪装。这里的 type 参数，客户端与服务器要一致。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/26/why-do-shadowsocks-deprecate-ota/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">为何 shadowsocks 要弃用一次性验证 (OTA)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/14/surge/">
+        <span class="next-text nav-default">Surge 原理与实现</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">AppSo</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/09/19/v2ray/';
+        this.page.identifier = '2017/09/19/v2ray/';
+        this.page.title = 'V2Ray 教程';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//appso.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
