@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
     
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
-<meta name="theme-color" content="#f8f5ec" />
+<meta name="theme-color" content="#f8f5ec">
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
 
-  <meta name="description" content="屏蔽 VPS 25 端口"/>
+  <meta name="description" content="屏蔽 VPS 25 端口">
 
 
 
@@ -36,14 +36,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/09/12/block-port-25/"/>
+<link rel="canonical" href="http://yoursite.com/2017/09/12/block-port-25/">
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
 
 
@@ -228,17 +228,17 @@
         <p>VPS 在频繁访问 25 端口的时候会被服务商判定为发送垃圾邮件，导致 VPS 被暂停。</p>
 <p>运行以下命令，添加防火墙规则，屏蔽 25 端口</p>
 <a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">iptables -A INPUT -s x.x.x.x/xx -j ACCEPT</div><div class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">iptables -A INPUT -i lo -j ACCEPT</div><div class="line">iptables -P INPUT DROP</div><div class="line">iptables -A OUTPUT -p tcp --dport 25 -j DROP</div><div class="line">iptables -A OUTPUT -p udp --dport 25 -j DROP</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -s x.x.x.x/xx -j ACCEPT</span><br><span class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line">iptables -P INPUT DROP</span><br><span class="line">iptables -A OUTPUT -p tcp --dport 25 -j DROP</span><br><span class="line">iptables -A OUTPUT -p udp --dport 25 -j DROP</span><br></pre></td></tr></table></figure>
 <p>保存规则</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables-save &gt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-save &gt; /etc/iptables.up.rules</span><br></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/network/interfaces</code>，在最后添加以下内容，开机加载屏蔽规则</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pre-up iptables-restore &lt; /etc/iptables.up.rules</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pre-up iptables-restore &lt; /etc/iptables.up.rules</span><br></pre></td></tr></table></figure>
 <p>编辑 <code>/etc/rsyslog.conf</code>，输出日志到 iptables.log</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kern.warning /var/log/iptables.log</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kern.warning /var/log/iptables.log</span><br></pre></td></tr></table></figure>
 <p>在 iptables 中添加日志选项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iptables -A OUTPUT -p tcp --dport 25 -j LOG --log-prefix &quot;iptables&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A OUTPUT -p tcp --dport 25 -j LOG --log-prefix &quot;iptables&quot;</span><br></pre></td></tr></table></figure>
 <p>重启日志服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service rsyslog restart</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service rsyslog restart</span><br></pre></td></tr></table></figure>
       
     </div>
 

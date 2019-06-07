@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
     
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
-<meta name="theme-color" content="#f8f5ec" />
+<meta name="theme-color" content="#f8f5ec">
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
 
-  <meta name="description" content="简单介绍一下网络连接的封锁与反封锁"/>
+  <meta name="description" content="简单介绍一下网络连接的封锁与反封锁">
 
 
 
@@ -36,14 +36,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/11/20/anti-block/"/>
+<link rel="canonical" href="http://yoursite.com/2017/11/20/anti-block/">
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
 
 
@@ -233,11 +233,11 @@
     <div class="post-content">
       
         <p>最近一段时间，针对网络连接的战争愈演愈烈，双方都在尝试不同的策略。以至于对于新人来说，很难理解哪些已经发生过，哪些还在尝试中。于是我打算写篇文章来简单介绍一下整个故事的来龙去脉。</p>
-<p><img src="/images/anti-block.png" alt=""></p>
+<p><img src="/images/anti-block.png" alt></p>
 <a id="more"></a>
 <h2 id="史前时代"><a href="#史前时代" class="headerlink" title="史前时代"></a>史前时代</h2><p>最早的封锁大约是 DNS 投毒和 IP 黑名单。具体细节这里不表，简单来说就是 1) 对于特定域名比如 google.com，你的浏览器解析不到正确的 IP 地址； 2) 即使碰巧解析到了正确的 IP 地址，由于 Google 在亚洲地区的 IP 地址就那么几个，发往这几个 IP 地址的数据包被全部丢弃（或 TCP Reset），也就导致了用户死活访问不到 google.com。</p>
 <h2 id="攻防战-1-0"><a href="#攻防战-1-0" class="headerlink" title="攻防战 1.0"></a>攻防战 1.0</h2><p>由于被封的 IP 依然是少数，而 Google 在全球的 IP 数量庞大，于是网友们很快想到了解决方案，就是使用 hosts 文件指定 IP 地址。虽然亚洲地区的 IP 被封了，但美国、欧洲甚至是南美洲依然有可以访问的地址，速度慢是慢了点，但总比上不去的好。于是 hosts 文件这个方案流行了那么一段时间。</p>
-<p>后来封锁升级了，不是针对 IP 地址的了，而是针对每一个网络连接。受限于为数不多的几个出入境节点，网民的每一个出境网络连接实际上都被扫描过一遍。于是网络协议最初设计时，并未考虑封锁这回事，无论是 HTTP 还是 HTTPS，只需要扫描每个连接的前几十个字节，就可以得到其目标地址（域名）。HTTP 是通过其 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host" target="_blank" rel="external">Host 头</a>，而 HTTPS 是通过 <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_blank" rel="external">SNI</a>。</p>
+<p>后来封锁升级了，不是针对 IP 地址的了，而是针对每一个网络连接。受限于为数不多的几个出入境节点，网民的每一个出境网络连接实际上都被扫描过一遍。于是网络协议最初设计时，并未考虑封锁这回事，无论是 HTTP 还是 HTTPS，只需要扫描每个连接的前几十个字节，就可以得到其目标地址（域名）。HTTP 是通过其 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host" target="_blank" rel="noopener">Host 头</a>，而 HTTPS 是通过 <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_blank" rel="noopener">SNI</a>。</p>
 <p>至此，针对域名，没有封不掉的，只有不想封的。</p>
 <p>在直线连接几乎不可能的之后，那就只能绕路了，也就是代理。代理的主要三种模式是 Socks、HTTP 和 VPN。三种模式各有利弊：</p>
 <ul>
@@ -252,7 +252,7 @@
 <p>对于一台国内的机器往一个国外的服务器发送数据的网络连接，有两种检测方式，被动式和主动式。</p>
 <p>被动式是指检测方只观察连接中传输的内容，当内容符合某种模式（比如关键字）的时候，就把连接中断，或者服务器 IP 列入黑名单。上述的所有封锁方式均为被动式。</p>
 <p>而主动式指的是，当观察到一个不可识别的连接时，检测方主动发起一个去往服务器的连接，通过一些编造的数据，探测出服务器是不是一台代理服务器。</p>
-<p>Shadowsocks 协议曾被指出一个<a href="https://breakwa11.blogspot.ch/2016/09/shadowsocks.html" target="_blank" rel="external">严重的安全性问题</a>。只需要不到 16 次主动探测，就可以 100% 断定服务器是否在运行 Shadowsocks。具体来说，初版 Shadowsocks 协议依赖于连接头部的某一个字节来读取目标地址，这个字节的取值只有三种。当这个字节的取值不合法时，Shadowsocks 会快速中断连接，否则继续读取剩下的内容。于是这一特征可被用于探测一个服务器是否为 Shadowsocks 代理。</p>
+<p>Shadowsocks 协议曾被指出一个<a href="https://breakwa11.blogspot.ch/2016/09/shadowsocks.html" target="_blank" rel="noopener">严重的安全性问题</a>。只需要不到 16 次主动探测，就可以 100% 断定服务器是否在运行 Shadowsocks。具体来说，初版 Shadowsocks 协议依赖于连接头部的某一个字节来读取目标地址，这个字节的取值只有三种。当这个字节的取值不合法时，Shadowsocks 会快速中断连接，否则继续读取剩下的内容。于是这一特征可被用于探测一个服务器是否为 Shadowsocks 代理。</p>
 <p>为了应对这一探测方式，Shadowsocks 对其加密方式升级了两次（OTA 和 AEAD）。目前看来这一漏洞，以及其它可能的主动探测方式，都被避免了。</p>
 <p>同时期还有多个流行的翻墙工具，其原理和 Shadowsocks 大同小异，这里略过。</p>
 <h2 id="番外篇-1-0"><a href="#番外篇-1-0" class="headerlink" title="番外篇 1.0"></a>番外篇 1.0</h2><p>既然代理工具有漏洞，那么检测工具也一会有漏洞。只要发现并利用这些漏洞，一样可以突破封锁。</p>

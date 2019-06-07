@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><meta name="generator" content="Hexo 3.8.0">
     
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
-<meta name="theme-color" content="#f8f5ec" />
+<meta name="theme-color" content="#f8f5ec">
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
 
-  <meta name="description" content="Shadowrocket 使用简单说明"/>
+  <meta name="description" content="Shadowrocket 使用简单说明">
 
 
 
@@ -36,14 +36,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
 
 
 
-<link rel="canonical" href="http://yoursite.com/2017/09/08/shadowrocket-manual/"/>
+<link rel="canonical" href="http://yoursite.com/2017/09/08/shadowrocket-manual/">
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
 
 
@@ -265,20 +265,20 @@
 <li>从网址导入配置文件</li>
 <li>从 WiFi 上传</li>
 </ul>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h3 id="基于域名的规则"><a href="#基于域名的规则" class="headerlink" title="基于域名的规则"></a>基于域名的规则</h3><h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMAIN,www.apple.com,Proxy</div></pre></td></tr></table></figure>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><h3 id="基于域名的规则"><a href="#基于域名的规则" class="headerlink" title="基于域名的规则"></a>基于域名的规则</h3><h4 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN,www.apple.com,Proxy</span><br></pre></td></tr></table></figure>
 <p>如果与请求的域名完全相同，则匹配规则。</p>
-<h4 id="域名后缀"><a href="#域名后缀" class="headerlink" title="域名后缀"></a>域名后缀</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMAIN-SUFFIX,apple.com,Proxy</div></pre></td></tr></table></figure>
-<p>如果与请求的域名后缀相同，则规则匹配。例如：’google.com’ 匹配 ‘www.google.com’，’mail.google.com’ 和 ‘google.com’，但并没有匹配’content-google.com’。</p>
-<h4 id="域名关键字"><a href="#域名关键字" class="headerlink" title="域名关键字"></a>域名关键字</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMAIN-KEYWORD,google,Proxy</div></pre></td></tr></table></figure>
+<h4 id="域名后缀"><a href="#域名后缀" class="headerlink" title="域名后缀"></a>域名后缀</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN-SUFFIX,apple.com,Proxy</span><br></pre></td></tr></table></figure>
+<p>如果与请求的域名后缀相同，则规则匹配。例如：’google.com’ 匹配 ‘<a href="http://www.google.com&#39;，&#39;mail.google.com&#39;" target="_blank" rel="noopener">www.google.com&#39;，&#39;mail.google.com&#39;</a> 和 ‘google.com’，但并没有匹配’content-google.com’。</p>
+<h4 id="域名关键字"><a href="#域名关键字" class="headerlink" title="域名关键字"></a>域名关键字</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN-KEYWORD,google,Proxy</span><br></pre></td></tr></table></figure>
 <p>如果请求的域包含关键字，则规则匹配。</p>
 <h4 id="基于域名的规则选项"><a href="#基于域名的规则选项" class="headerlink" title="基于域名的规则选项"></a>基于域名的规则选项</h4><p>force-remote-dns</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DOMAIN,www.apple.com,Proxy,force-remote-dns</div><div class="line">DOMAIN-SUFFIX,apple.com,Proxy,force-remote-dns</div><div class="line">DOMAIN-KEYWORD,google,Proxy,force-remote-dns</div></pre></td></tr></table></figure>
-<h3 id="基于IP的规则"><a href="#基于IP的规则" class="headerlink" title="基于IP的规则"></a>基于IP的规则</h3><h4 id="IP-CIDR"><a href="#IP-CIDR" class="headerlink" title="IP-CIDR"></a>IP-CIDR</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">IP-CIDR,192.168.0.0/16,DIRECT</div><div class="line">IP-CIDR,10.0.0.0/8,DIRECT</div><div class="line">IP-CIDR,172.16.0.0/12,DIRECT</div><div class="line">IP-CIDR,127.0.0.1/8,DIRECT</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN,www.apple.com,Proxy,force-remote-dns</span><br><span class="line">DOMAIN-SUFFIX,apple.com,Proxy,force-remote-dns</span><br><span class="line">DOMAIN-KEYWORD,google,Proxy,force-remote-dns</span><br></pre></td></tr></table></figure>
+<h3 id="基于IP的规则"><a href="#基于IP的规则" class="headerlink" title="基于IP的规则"></a>基于IP的规则</h3><h4 id="IP-CIDR"><a href="#IP-CIDR" class="headerlink" title="IP-CIDR"></a>IP-CIDR</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IP-CIDR,192.168.0.0/16,DIRECT</span><br><span class="line">IP-CIDR,10.0.0.0/8,DIRECT</span><br><span class="line">IP-CIDR,172.16.0.0/12,DIRECT</span><br><span class="line">IP-CIDR,127.0.0.1/8,DIRECT</span><br></pre></td></tr></table></figure>
 <p>如果请求的IP地址匹配指定范围，则规则匹配。</p>
-<h4 id="GEOIP"><a href="#GEOIP" class="headerlink" title="GEOIP"></a>GEOIP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GEOIP,US,DIRECT</div><div class="line">GEOIP,CN,DIRECT</div></pre></td></tr></table></figure>
+<h4 id="GEOIP"><a href="#GEOIP" class="headerlink" title="GEOIP"></a>GEOIP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GEOIP,US,DIRECT</span><br><span class="line">GEOIP,CN,DIRECT</span><br></pre></td></tr></table></figure>
 <p>如果 GeoIP 测试结果符合指定的国家/地区代码，则规则匹配。</p>
 <h4 id="基于-IP-的规则选项"><a href="#基于-IP-的规则选项" class="headerlink" title="基于 IP 的规则选项"></a>基于 IP 的规则选项</h4><p>no-resolve</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GEOIP,US,DIRECT,no-resolve</div><div class="line">IP-CIDR,172.16.0.0/12,DIRECT,no-resolve</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GEOIP,US,DIRECT,no-resolve</span><br><span class="line">IP-CIDR,172.16.0.0/12,DIRECT,no-resolve</span><br></pre></td></tr></table></figure>
 <p>当遇到 GEOIP 或 IP-CIDR 规则时，Shadowrocket 会发送 DNS 问题，以检查请求的主机名是否为域名。您可以选择 “no-resolve” 选项来跳过具有域名的请求的此规则。</p>
 <p>注意：如果某些域名无法由本地 DNS 服务器解决，请确保在与该域匹配的规则前面没有基于 IP 的规则。否则由于 DNS 错误，规则测试将失败。您也可以使用 “no-resolve” 来解决问题。</p>
 <h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>用于解密 HTTPS。</p>
