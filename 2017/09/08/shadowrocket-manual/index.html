@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -13,31 +15,67 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="Shadowrocket（小火箭）使用简单说明"><meta name="google-site-verification" content="UA-108901925-1"><link rel="alternate" href="/atom.xml" title="AppSo"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+
+
+  <meta name="description" content="Shadowrocket（小火箭）使用简单说明">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AppSo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
 <link rel="canonical" href="http://yoursite.com/2017/09/08/shadowrocket-manual/">
 
-<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
 
-<script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-<script>
-  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
-</script>
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
-    <title>Shadowrocket（小火箭）使用简单说明 - AppSo</title>
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-108901925-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+    <title> Shadowrocket（小火箭）使用简单说明 - AppSo </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -52,75 +90,151 @@
 </div>
 
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">首页
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">归档
-          </li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">标签
-          </li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">分类
-          </li>
-      </a><a href="/about/">
-        <li class="mobile-menu-item">关于
-          </li>
-      </a></ul>
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
+
+    <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
   <a href="/." class="logo">AppSo</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/">
-            首页
-            </a>
+            
+            
+              首页
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/archives/">
-            归档
-            </a>
+            
+            
+              归档
+            
+          </a>
         </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/tags/">
-            标签
-            </a>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
         </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/categories/">
-            分类
-            </a>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
         </li>
-      <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
-            关于
-            </a>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
         </li>
-      </ul></nav>
-</header>
+      
+    </ul>
+  
+</nav>
+
+      </header>
 
       <main id="main" class="main">
         <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
     <header class="post-header">
-      <h1 class="post-title">Shadowrocket（小火箭）使用简单说明
-        </h1>
+      <h1 class="post-title">
+        
+          Shadowrocket（小火箭）使用简单说明
+        
+      </h1>
 
       <div class="post-meta">
         <span class="post-time">
           2017-09-08
-        </span></div>
+        </span>
+        
+        
+      </div>
     </header>
 
-    <div class="post-toc" id="post-toc">
+    
+    
+  <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#首页"><span class="toc-text">首页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加节点"><span class="toc-text">添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点排序"><span class="toc-text">节点排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局路由"><span class="toc-text">全局路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景设置"><span class="toc-text">场景设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度测试"><span class="toc-text">速度测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#延迟测试"><span class="toc-text">延迟测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据"><span class="toc-text">数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于域名的规则"><span class="toc-text">基于域名的规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#域名"><span class="toc-text">域名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#域名后缀"><span class="toc-text">域名后缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#域名关键字"><span class="toc-text">域名关键字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于域名的规则选项"><span class="toc-text">基于域名的规则选项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于IP的规则"><span class="toc-text">基于IP的规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IP-CIDR"><span class="toc-text">IP-CIDR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GEOIP"><span class="toc-text">GEOIP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于-IP-的规则选项"><span class="toc-text">基于 IP 的规则选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置"><span class="toc-text">设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#证书"><span class="toc-text">证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#延迟测试方法"><span class="toc-text">延迟测试方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按需求连接"><span class="toc-text">按需求连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代理共享"><span class="toc-text">代理共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP"><span class="toc-text">UDP</span></a></li></ol></li></ol>
     </div>
-  </div><div class="post-content"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Shadowrocket 是一款基于规则的代理实用工具。</p>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Shadowrocket 是一款基于规则的代理实用工具。</p>
 <ul>
 <li>高性能和稳定性：功能多样，但只占用最少的系统资源。它将完美地处理所有的流量，让你无忧无虑。</li>
 <li>灵活的规则系统：您可以根据域名，IP CIDR，GEOIP 等设置代理转发规则。Shadowrocket 将自动将请求发送到另一个代理服务器。支持的代理协议多样化。</li>
@@ -184,44 +298,129 @@
 <h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>默认参数即可。</p>
 <h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>类型默认 Socket 即可，Socket 为作者自己实现，Session 为使用苹果的库实现，参数用默认即可。</p>
 
-      </div>
       
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
       <footer class="post-footer">
         
-        <nav class="post-nav"><a class="prev" href="/2017/09/11/breakwall/">
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/11/breakwall/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">翻墙小结</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
-    <a class="next" href="/2017/09/08/server-setup/">
+    
+    
+      <a class="next" href="/2017/09/08/server-setup/">
         <span class="next-text nav-default">ShadowsocksR 服务端安装教程</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    </div></div>
+    
+  </div>
+
+
+        </div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
-        </div><div class="copyright">
-  <span class="copyright-year">&copy;2017 - 2019<span class="heart">
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">AppSo</span>
   </span>
 </div>
-</footer>
+
+      </footer>
 
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript">
+    </div>
+
+    
+  
+  <script type="text/javascript">
     var disqus_config = function () {
         this.page.url = 'http://yoursite.com/2017/09/08/shadowrocket-manual/';
         this.page.identifier = '2017/09/08/shadowrocket-manual/';
@@ -235,11 +434,33 @@
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
     })();  
-  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
-  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
-</body>
+  </script>
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
 </html>
