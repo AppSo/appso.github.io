@@ -1,39 +1,27 @@
 (function (window) {
   'use strict';
 
-  function Even(config) {
-    this.config = config;
-  }
+  var Even = {};
 
-  Even.prototype.setup = function() {
-    var leancloud = this.config.leancloud;
+  Even.backToTop = function () {
+    var $backToTop = $('#back-to-top');
 
-    this.navbar();
-    this.responsiveTable();
+    $(window).scroll(function () {
+      if ($(window).scrollTop() > 100) {
+        $backToTop.fadeIn(1000);
+      } else {
+        $backToTop.fadeOut(1000);
+      }
+    });
 
-    if (this.config.toc) {
-      this.scrollToc();
-      this.tocFollow();
-    }
-    if (this.config.fancybox) {
-      this.fancybox();
-    }
-    if (leancloud.app_id && leancloud.app_key) {
-      this.recordReadings();
-    }
-    if (this.config.pjax) {
-      this.pjax();
-    }
-    if(this.config.latex) {
-      this.renderLaTeX();
-    }
-    this.backToTop();
+    $backToTop.click(function () {
+      $('body,html').animate({ scrollTop: 0 });
+    });
   };
 
-  Even.prototype.navbar = function () {
-    var $nav = $('#mobile-navbar');
-    var $navIcon = $('.mobile-navbar-icon');
-
+  Even.mobileNavbar = function () {
+    var $mobileNav = $('#mobile-navbar');
+    var $mobileNavIcon = $('.mobile-navbar-icon');
     var slideout = new Slideout({
       'panel': document.getElementById('mobile-panel'),
       'menu': document.getElementById('mobile-menu'),
@@ -42,34 +30,29 @@
     });
     slideout.disableTouch();
 
-    $navIcon.click(function () {
+    $mobileNavIcon.click(function () {
       slideout.toggle();
     });
 
     slideout.on('beforeopen', function () {
-      $nav.addClass('fixed-open');
-      $navIcon.addClass('icon-click').removeClass('icon-out');
+      $mobileNav.addClass('fixed-open');
+      $mobileNavIcon.addClass('icon-click').removeClass('icon-out');
     });
 
     slideout.on('beforeclose', function () {
-      $nav.removeClass('fixed-open');
-      $navIcon.addClass('icon-out').removeClass('icon-click');
+      $mobileNav.removeClass('fixed-open');
+      $mobileNavIcon.addClass('icon-out').removeClass('icon-click');
     });
 
     $('#mobile-panel').on('touchend', function () {
-      slideout.isOpen() && $navIcon.click();
+      slideout.isOpen() && $mobileNavIcon.click();
     });
   };
 
-  Even.prototype.responsiveTable = function () {
-    var tables = $('.post-content > table')
-    tables.wrap('<div class="table-responsive">')
-  };
-
-  Even.prototype.scrollToc = function () {
+  Even.toc = function () {
     var SPACING = 20;
-    var $toc = $('.post-toc');
-    var $footer = $('.post-footer');
+    var $toc = $('.post-toc'),
+        $footer = $('.post-footer');
 
     if ($toc.length) {
       var minScrollTop = $toc.offset().top - SPACING;
@@ -102,23 +85,22 @@
         }
       })
     }
-  };
 
-  Even.prototype.tocFollow = function () {
     var HEADERFIX = 30;
     var $toclink = $('.toc-link'),
-      $headerlink = $('.headerlink');
+        $headerlink = $('.headerlink');
+
+    var headerlinkTop = $.map($headerlink, function (link) {
+      return $(link).offset().top;
+    });
 
     $(window).scroll(function () {
-      var headerlinkTop = $.map($headerlink, function (link) {
-        return $(link).offset().top;
-      });
       var scrollTop = $(window).scrollTop();
 
       for (var i = 0; i < $toclink.length; i++) {
         var isLastOne = i + 1 === $toclink.length,
-          currentTop = headerlinkTop[i] - HEADERFIX,
-          nextTop = isLastOne ? Infinity : headerlinkTop[i + 1] - HEADERFIX;
+            currentTop = headerlinkTop[i] - HEADERFIX,
+            nextTop = isLastOne ? Infinity : headerlinkTop[i+1] - HEADERFIX;
 
         if (currentTop < scrollTop && scrollTop <= nextTop) {
           $($toclink[i]).addClass('active');
@@ -129,37 +111,27 @@
     });
   };
 
-  Even.prototype.fancybox = function () {
-    if ($.fancybox) {
+  Even.fancybox = function () {
+    if ($.fancybox){
       $('.post').each(function () {
         $(this).find('img').each(function () {
-          var href = 'href="' + this.src + '"';
-          var title = 'title="' + this.alt + '"';
-          $(this).wrap('<a class="fancybox" ' + href + ' ' + title + '></a>');
+          $(this).wrap('<a class="fancybox" href="' + this.src + '" title="' + this.alt + '"></a>');
         });
       });
 
       $('.fancybox').fancybox({
-        openEffect: 'elastic',
-        closeEffect: 'elastic'
+        openEffect	: 'elastic',
+        closeEffect	: 'elastic'
       });
     }
   };
 
-  Even.prototype.recordReadings = function () {
-    if (typeof AV !== 'object') return;
-
+  Even.visits = function () {
     var $visits = $('.post-visits');
-    var Counter = AV.Object.extend('Counter');
-    if ($visits.length === 1) {
-      addCounter(Counter);
-    } else {
-      showTime(Counter);
-    }
 
     function updateVisits(dom, time) {
-      var readText = dom.text().replace(/(\d+)/i, time)
-      dom.text(readText);
+      var text = dom.text() + ' ' + time;
+      dom.text(text);
     }
 
     function addCounter(Counter) {
@@ -186,18 +158,12 @@
           newcounter.set('url', url);
           newcounter.set('time', 1);
 
-          var acl = new AV.ACL();
-          acl.setWriteAccess('*', true)
-          acl.setReadAccess('*', true)
-          newcounter.setACL(acl)
-
-          newcounter.save().then(function () {
+          newcounter.save().then(function (counter) {
             updateVisits($visits, newcounter.get('time'));
           });
         }
       }, function (error) {
-        // eslint-disable-next-line
-        console.log('Error:' + error.code + ' ' + error.message);
+        console.log('Error:' + error.code + " " + error.message);
       });
     }
 
@@ -216,62 +182,20 @@
             updateVisits($this, counter.get('time'));
           }
         }, function (error) {
-          // eslint-disable-next-line
-          console.log('Error:' + error.code + ' ' + error.message);
+          console.log('Error:' + error.code + " " + error.message);
         });
       })
     }
-  };
 
-  Even.prototype.pjax = function () {
-    if (location.hostname === 'localhost' || this.hasPjax) return;
-    this.hasPjax = true;
-    this._fancybox = $.fancybox;
-    this._fancyboxProto = $.prototype.fancybox;
-
-    var that = this;
-    $(document).pjax('a', 'body', { fragment: 'body' });
-    $(document).on('pjax:send', function () {
-      NProgress.start();
-      $('body').addClass('hide-top');
-    });
-    $(document).on('pjax:complete', function () {
-      NProgress.done();
-      $('body').removeClass('hide-top');
-      $.fancybox = that._fancybox;
-      $.prototype.fancybox = that._fancyboxProto;
-      that.setup();
-    });
-  };
-
-  Even.prototype.backToTop = function () {
-    var $backToTop = $('#back-to-top');
-
-    $(window).scroll(function () {
-      if ($(window).scrollTop() > 100) {
-        $backToTop.fadeIn(1000);
+    if (typeof AV === 'object') {
+      var Counter = AV.Object.extend('Counter');
+      if ($visits.length === 1) {
+        addCounter(Counter);
       } else {
-        $backToTop.fadeOut(1000);
+        showTime(Counter);
       }
-    });
-
-    $backToTop.click(function () {
-      $('body,html').animate({ scrollTop: 0 });
-    });
-  };
-
-  Even.prototype.renderLaTeX = function () {
-    var loopID = setInterval(function () {
-      if(window.MathJax) {
-        var jax = window.MathJax;
-        jax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }});
-        jax.Hub.Queue(['Typeset', jax.Hub, $(document.body)[0]]);
-        clearInterval(loopID);
-      }
-    }, 500);
+    }
   }
 
-  var config = window.config;
-  var even = new Even(config);
-  even.setup();
-}(window))
+  window.Even = Even;
+})(window);
