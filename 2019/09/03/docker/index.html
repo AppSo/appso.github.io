@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="利用 Docker 部署 Shadowsocks 服务">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="AppSo">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0">
+
+
+
+<link rel="canonical" href="http://yoursite.com/2019/09/03/docker/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-108901925-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  
+
+
+
+
+
+
+
+
+    <title> 利用 Docker 部署 Shadowsocks 服务 - AppSo </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">AppSo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">AppSo</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          利用 Docker 部署 Shadowsocks 服务
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-09-03
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装并启动-Docker"><span class="toc-text">安装并启动 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shadowsocks-libev-Docker-Image"><span class="toc-text">Shadowsocks-libev Docker Image</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持的-Tags-及-Dockerfile"><span class="toc-text">支持的 Tags 及 Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取镜像"><span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-config-文件"><span class="toc-text">创建 config 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动容器"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看容器"><span class="toc-text">查看容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止容器"><span class="toc-text">停止容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动容器-1"><span class="toc-text">启动容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowsocksR-Docker-Image"><span class="toc-text">ShadowsocksR Docker Image</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持的-Tags-及-Dockerfile-1"><span class="toc-text">支持的 Tags 及 Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拉取镜像-1"><span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建-config-文件-1"><span class="toc-text">创建 config 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动容器-2"><span class="toc-text">启动容器</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><img src="/images/docker.png" alt></p>
+<a id="more"></a>
+
+<p><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a> 是一个开放源代码软件项目，让应用程序布署在软件容器下的工作可以自动化进行，借此在操作系统上，提供一个额外的软件抽象层，以及操作系统层虚拟化的自动管理机制。<br>Docker 利用 Linux 核心中的资源分脱机制，例如 cgroups，以及 Linux 核心名字空间（name space），来创建独立的软件容器（containers）。这可以在单一 Linux 实体下运作，避免启动一个虚拟机造成的额外负担。<br>简单概括起来就是，Docker 是个容器，什么都能往里塞，你也可以理解为是一个轻量化的虚拟机。<br>使用 Docker 的好处就是对当前系统的环境没有破坏性，基本上一款镜像可以跑在任意包含了 Docker 的机器上，可以说是十分方便了。</p>
+<h2 id="安装并启动-Docker"><a href="#安装并启动-Docker" class="headerlink" title="安装并启动 Docker"></a>安装并启动 Docker</h2><p>操作系统内核大于等于 3.10 的都可以安装最新版 Docker，可以直接运行官方的安装脚本一键安装。<br>执行脚本方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- get.docker.com | bash</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，运行下面的命令，验证是否安装成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>允许 Docker 开机自启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="Shadowsocks-libev-Docker-Image"><a href="#Shadowsocks-libev-Docker-Image" class="headerlink" title="Shadowsocks-libev Docker Image"></a>Shadowsocks-libev Docker Image</h2><p>基于官方 debian:stretch 镜像制作，直接利用 <code>apt-get</code> 安装好 shadowsocks-libev 和 simple-obfs 即可。<br>该容器在启动时依赖于读取宿主机里的配置文件，因此在启动该镜像时配合不同的 config 文件，就能开启任意个 Docker ，也就是所谓的多端口。<br>把配置文件放在宿主机里，是基于这样的考量：随时在宿主机里修改配置的端口，密码，加密方式等信息，然后只需重启容器，无需再次创建新的容器。</p>
+<h3 id="支持的-Tags-及-Dockerfile"><a href="#支持的-Tags-及-Dockerfile" class="headerlink" title="支持的 Tags 及 Dockerfile"></a>支持的 Tags 及 Dockerfile</h3><p>latest <a href="https://github.com/AppSo/shadowsocks_install/blob/master/docker/shadowsocks-libev/Dockerfile" target="_blank" rel="noopener">(Dockerfile)</a><br>alpine <a href="https://github.com/AppSo/shadowsocks_install/blob/master/docker/shadowsocks-libev/alpine/Dockerfile" target="_blank" rel="noopener">(Dockerfile)</a></p>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull appso/shadowsocks-libev</span><br></pre></td></tr></table></figure>
+
+<p>或者拉取以 alpine 镜像制作的，其特点就是文件容量非常小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull appso/shadowsocks-libev:alpine</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-config-文件"><a href="#创建-config-文件" class="headerlink" title="创建 config 文件"></a>创建 config 文件</h3><p>比如在目录 <code>/etc/shadowsocks-libev</code> 下创建 config.json，完整路径也就是 <code>/etc/shadowsocks-libev/config.json</code><br>范例内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_port&quot;:9000,</span><br><span class="line">    &quot;password&quot;:&quot;password&quot;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-gcm&quot;,</span><br><span class="line">    &quot;fast_open&quot;:false,</span><br><span class="line">    &quot;nameserver&quot;:&quot;8.8.8.8&quot;,</span><br><span class="line">    &quot;mode&quot;:&quot;tcp_and_udp&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想同时开启 simple-obfs，那么配置文件范例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_port&quot;:9000,</span><br><span class="line">    &quot;password&quot;:&quot;password&quot;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-gcm&quot;,</span><br><span class="line">    &quot;fast_open&quot;:false,</span><br><span class="line">    &quot;nameserver&quot;:&quot;8.8.8.8&quot;,</span><br><span class="line">    &quot;mode&quot;:&quot;tcp_and_udp&quot;,</span><br><span class="line">    &quot;plugin&quot;:&quot;obfs-server&quot;,</span><br><span class="line">    &quot;plugin_opts&quot;:&quot;obfs=http&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置文件里面所有选项的含义，可以参考<a href="https://github.com/shadowsocks/shadowsocks-libev/blob/master/doc/shadowsocks-libev.asciidoc" target="_blank" rel="noopener">这个链接</a>。</p>
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><p>在上面这个范例里，定义的端口是 9000，那么在启动容器时就需要将 9000 端口映射到宿主机的对外端口上。<br>启动命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 -p 9000:9000/udp --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev appso/shadowsocks-libev</span><br></pre></td></tr></table></figure>
+
+<p><code>docker run</code>：开始运行一个容器。<br><code>-d</code> 参数：容器以后台运行并输出容器 ID。<br><code>-p</code> 参数：容器的 9000 端口映射到本机的 9000 端口。默认是映射 TCP，当需要映射 UDP 时，那就再追加一次 UDP 的映射。冒号前面是宿主机端口，冒号后面是容器端口，可以写成一致，也可以不一致。<br><code>–name</code> 参数：给容器分配一个识别符，方便将来的启动，停止，删除等操作。<br><code>-v</code> 参数：挂载卷（volume），冒号前面是宿主机的路径，冒号后面是容器的路径，可以写成一致，也可以不一致。<br><code>appso/shadowsocks-libev</code>：这是拉取回来的镜像路径。</p>
+<p>当然，这里也可以启动 Tag 为 alpine 的镜像命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 -p 9000:9000/udp --name ss-libev -v /etc/shadowsocks-libev:/etc/shadowsocks-libev appso/shadowsocks-libev:alpine</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：此处仅作为演示，不能同时执行上面的这两个启动命令，因为端口都是 9000，产生冲突了。推荐选 Tag 为 alpine 的镜像的，因为文件的体积会相对比较小。</p>
+<h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><p>利用如下命令可以查看所有已创建的 Docker 容器并显示容器的大小等信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -as</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h3><p>利用如下命令可以停止正在运行中的容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop <span class="variable">$name</span></span><br></pre></td></tr></table></figure>
+
+<p>此处的 <code>$name</code> 就是在启动容器那一步定义的容器的识别符，比如范例的 ss-libev</p>
+<h3 id="启动容器-1"><a href="#启动容器-1" class="headerlink" title="启动容器"></a>启动容器</h3><p>利用如下命令可以启动已经停止的容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start <span class="variable">$name</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ShadowsocksR-Docker-Image"><a href="#ShadowsocksR-Docker-Image" class="headerlink" title="ShadowsocksR Docker Image"></a>ShadowsocksR Docker Image</h2><p>基于官方 debian:stretch 镜像制作，安装的是 Github 上目前<a href="https://github.com/AppSo/shadowsocksr" target="_blank" rel="noopener">最新的版本</a>。
+该容器在启动时依赖于读取宿主机里的配置文件，因此在启动该镜像时配合不同的 config 文件，就能开启任意个 Docker ，也就是所谓的多端口。<br>把配置文件放在宿主机里，是基于这样的考量：随时在宿主机里修改配置的端口，密码，加密方式等信息，然后只需重启容器，无需再次创建新的容器。</p>
+<h3 id="支持的-Tags-及-Dockerfile-1"><a href="#支持的-Tags-及-Dockerfile-1" class="headerlink" title="支持的 Tags 及 Dockerfile"></a>支持的 Tags 及 Dockerfile</h3><p>latest <a href="https://github.com/AppSo/shadowsocks_install/blob/master/docker/shadowsocksr/Dockerfile" target="_blank" rel="noopener">(Dockerfile)</a><br>alpine <a href="https://github.com/AppSo/shadowsocks_install/blob/master/docker/shadowsocksr/alpine/Dockerfile" target="_blank" rel="noopener">(Dockerfile)</a></p>
+<h3 id="拉取镜像-1"><a href="#拉取镜像-1" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull appso/shadowsocksr</span><br></pre></td></tr></table></figure>
+
+<p>或者拉取基于 python:3.6-alpine 镜像制作的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull appso/shadowsocksr:alpine</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-config-文件-1"><a href="#创建-config-文件-1" class="headerlink" title="创建 config 文件"></a>创建 config 文件</h3><p>比如在目录 <code>/etc/shadowsocksr</code> 下创建 config.json，完整路径也就是 <code>/etc/shadowsocksr/config.json</code><br>范例内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_ipv6&quot;:&quot;::&quot;,</span><br><span class="line">    &quot;server_port&quot;:9000,</span><br><span class="line">    &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;password&quot;:&quot;password&quot;,</span><br><span class="line">    &quot;timeout&quot;:120,</span><br><span class="line">    &quot;method&quot;:&quot;none&quot;,</span><br><span class="line">    &quot;protocol&quot;:&quot;auth_chain_b&quot;,</span><br><span class="line">    &quot;protocol_param&quot;:&quot;&quot;,</span><br><span class="line">    &quot;obfs&quot;:&quot;http_simple&quot;,</span><br><span class="line">    &quot;obfs_param&quot;:&quot;&quot;,</span><br><span class="line">    &quot;redirect&quot;:&quot;&quot;,</span><br><span class="line">    &quot;dns_ipv6&quot;:false,</span><br><span class="line">    &quot;fast_open&quot;:false,</span><br><span class="line">    &quot;workers&quot;:1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ShadowsocksR 协议插件文档的含义，可以参考<a href="https://github.com/AppSo/shadowsocks-rss/blob/master/ssr.md" target="_blank" rel="noopener">这个链接</a>。</p>
+<h3 id="启动容器-2"><a href="#启动容器-2" class="headerlink" title="启动容器"></a>启动容器</h3><p>在上面这个范例里，定义的端口是 9000，那么在启动容器时就需要将 9000 端口映射到宿主机的对外端口上。<br>启动命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 -p 9000:9000/udp --name ssr -v /etc/shadowsocksr:/etc/shadowsocksr appso/shadowsocksr</span><br></pre></td></tr></table></figure>
+
+<p>启动 Tag 为 alpine 的镜像命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 -p 9000:9000/udp --name ssr -v /etc/shadowsocksr:/etc/shadowsocksr appso/shadowsocksr:alpine</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：此处仅作为演示，不能同时执行上面的这两个启动命令，因为端口都是 9000，产生冲突了。推荐选 Tag 为 alpine 的镜像的，因为文件的体积会相对比较小。</p>
+<p><em>参考链接</em></p>
+<p><em><a href="https://hub.docker.com/r/appso/shadowsocks-libev/" target="_blank" rel="noopener">https://hub.docker.com/r/appso/shadowsocks-libev/</a></em><br><em><a href="https://hub.docker.com/r/appso/shadowsocksr/" target="_blank" rel="noopener">https://hub.docker.com/r/appso/shadowsocksr/</a></em></p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/11/21/Shadowsocks-install/">
+        <span class="next-text nav-default">Shadowsocks 一键安装脚本（四合一）</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/AppSo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">AppSo</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2019/09/03/docker/';
+        this.page.identifier = '2019/09/03/docker/';
+        this.page.title = '利用 Docker 部署 Shadowsocks 服务';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//appso.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
